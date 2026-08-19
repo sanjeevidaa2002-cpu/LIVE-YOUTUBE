@@ -1,0 +1,76 @@
+{
+  "users": [
+    {
+      "id": "usr_admin_1",
+      "googleId": "usr_admin_1",
+      "email": "admin@gmail.com",
+      "name": "admin",
+      "avatar": "",
+      "role": "ADMIN",
+      "status": "ACTIVE",
+      "createdAt": "2026-08-15T18:26:32.386Z",
+      "lastLogin": "2026-08-18T00:56:37.840Z",
+      "googleDriveConnected": false
+    }
+  ],
+  "videos": [
+    {
+      "id": "vid_1786819156766_bc07a558",
+      "originalName": "Family Guy Best Moments Compilation.mp4",
+      "storedName": "vid_1786819153995_96090e5e809f.mp4",
+      "path": "/app/applet/uploads/vid_1786819153995_96090e5e809f.mp4",
+      "size": 805015607,
+      "duration": 19275.8,
+      "width": 1280,
+      "height": 720,
+      "fps": 30,
+      "bitrate": 334104,
+      "videoCodec": "h264",
+      "hasAudio": false,
+      "thumbnailUrl": "/api/videos/thumbnail/thumb_1786819156494_6b1f1q.jpg",
+      "createdAt": "2026-08-15T18:39:16.767Z"
+    }
+  ],
+  "playlists": [],
+  "userConfigs": {},
+  "sessions": [
+    {
+      "id": "ses_1786819369223_xx8rj4",
+      "videoId": "vid_1786819156766_bc07a558",
+      "videoName": "video6055392468424203637.mp4",
+      "rtmpUrlMasked": "rtmp://a.rtmp.youtube.com/live2/mx89••••6v",
+      "startedAt": "2026-08-15T18:42:49.223Z",
+      "stoppedAt": "2026-08-15T18:44:10.120Z",
+      "durationSeconds": 19,
+      "status": "STOPPED",
+      "reconnectCount": 2,
+      "errorMessage": null
+    }
+  ],
+  "settings": {
+    "maxConcurrentStreams": 10,
+    "defaultRtmpUrl": "rtmps://a.rtmp.youtube.com:443/live2",
+    "defaultQuality": "source",
+    "defaultBitrate": "4000k",
+    "defaultFps": "source",
+    "autoReconnect": true,
+    "reconnectDelay": 5,
+    "maxUploadSizeMb": 500,
+    "allowedExtensions": [
+      ".mp4",
+      ".mkv",
+      ".mov",
+      ".avi",
+      ".flv",
+      ".webm",
+      ".ts"
+    ],
+    "autoRecoverOnBoot": true,
+    "adminGoogleEmails": [
+      "titangaming4m@gmail.com",
+      "admin@streamloop.io"
+    ],
+    "googleDriveEnabled": true,
+    "googleDriveFolderId": "1dXdslnvgzi2nm71wJGuU6xsFIjWvZ5Ho"
+  }
+}

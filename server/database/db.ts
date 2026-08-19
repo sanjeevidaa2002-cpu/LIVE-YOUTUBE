@@ -1,0 +1,375 @@
+import { createClient, SupabaseClient } from '@supabase/supabase-js';
+import {
+  User,
+  VideoMetadata,
+  StreamConfig,
+  StreamSession,
+  SystemSettings,
+  Playlist,
+} from '../../src/types/index.ts';
+
+const DEFAULT_SETTINGS: SystemSettings = {
+  maxConcurrentStreams: Number(process.env.MAX_CONCURRENT_STREAMS) || 10,
+  defaultRtmpUrl: process.env.DEFAULT_RTMP_URL || 'rtmps://a.rtmp.youtube.com:443/live2',
+  defaultQuality: 'source',
+  defaultBitrate: '4000k',
+  defaultFps: 'source',
+  autoReconnect: true,
+  reconnectDelay: 5,
+  maxUploadSizeMb: Number(process.env.MAX_UPLOAD_SIZE_MB) || 500,
+  allowedExtensions: ['.mp4', '.mkv', '.mov', '.avi', '.flv', '.webm', '.ts'],
+  autoRecoverOnBoot: process.env.AUTO_RECOVER_STREAM === 'true',
+  adminGoogleEmails: (process.env.ADMIN_GOOGLE_EMAILS || 'titangaming4m@gmail.com,admin@streamloop.io')
+    .split(',')
+    .map(e => e.trim().toLowerCase())
+    .filter(Boolean),
+  googleDriveEnabled: false,
+  googleDriveFolderId: '',
+};
+
+export const AUTHORIZED_ADMIN_IDENTITY = 'LIGHT GAMING 4M';
+
+class SupabaseDatabase {
+  private client: SupabaseClient | null = null;
+  private memoryUsers: User[] = [];
+  private memoryVideos: VideoMetadata[] = [];
+  private memoryPlaylists: Playlist[] = [];
+  private memoryConfigs: Record<string, StreamConfig> = {};
+  private memorySessions: StreamSession[] = [];
+  private settings: SystemSettings = DEFAULT_SETTINGS;
+
+  constructor() {
+    this.initSupabase();
+    // Prepopulate default admin user
+    this.memoryUsers.push({
+      id: 'usr_admin_default',
+      googleId: 'sb_admin_default',
+      email: 'titangaming4m@gmail.com',
+      name: 'LIGHT GAMING 4M',
+      role: 'ADMIN',
+      status: 'ACTIVE',
+      createdAt: new Date().toISOString(),
+      lastLogin: new Date().toISOString(),
+    });
+  }
+
+  public initSupabase() {
+    const url = process.env.SUPABASE_URL || process.env.VITE_SUPABASE_URL;
+    const key = process.env.SUPABASE_ANON_KEY || process.env.VITE_SUPABASE_ANON_KEY;
+    if (url && key && !url.includes('placeholder')) {
+      try {
+        this.client = createClient(url, key);
+        console.log('[Supabase DB] Connected to Supabase Database successfully.');
+      } catch (err) {
+        console.error('[Supabase DB] Failed to initialize Supabase client:', err);
+      }
+    }
+  }
+
+  public init() {
+    this.initSupabase();
+  }
+
+  public isEmailAdmin(email: string): boolean {
+    if (!email) return false;
+    const clean = email.trim().toLowerCase();
+    const adminEmails = this.settings.adminGoogleEmails || [];
+    return adminEmails.some(e => e.trim().toLowerCase() === clean) || clean === 'titangaming4m@gmail.com';
+  }
+
+  public isUserAdmin(user: { email?: string; name?: string; role?: string } | string): boolean {
+    if (!user) return false;
+    if (typeof user === 'string') {
+      return this.isEmailAdmin(user);
+    }
+    const emailMatches = user.email ? this.isEmailAdmin(user.email) : false;
+    const nameMatches = user.name ? user.name.toUpperCase().includes('LIGHT GAMING 4M') : false;
+    return emailMatches || nameMatches || user.role === 'ADMIN';
+  }
+
+  public upsertGoogleUser(profile: {
+    googleId: string;
+    email: string;
+    name: string;
+    avatar?: string;
+  }): { user: User; isNew: boolean } {
+    const cleanEmail = profile.email.trim().toLowerCase();
+    const shouldBeAdmin = this.isEmailAdmin(cleanEmail) || (profile.name && profile.name.toUpperCase().includes('LIGHT GAMING 4M'));
+
+    let existing = this.memoryUsers.find(u => u.googleId === profile.googleId || u.email.toLowerCase() === cleanEmail);
+    if (existing) {
+      existing.name = profile.name || existing.name;
+      existing.avatar = profile.avatar || existing.avatar;
+      existing.lastLogin = new Date().toISOString();
+      existing.role = shouldBeAdmin ? 'ADMIN' : 'USER';
+      return { user: existing, isNew: false };
+    }
+
+    const newUser: User = {
+      id: `usr_${Date.now()}_${Math.random().toString(36).substring(2, 8)}`,
+      googleId: profile.googleId,
+      email: cleanEmail,
+      name: profile.name || cleanEmail.split('@')[0],
+      avatar: profile.avatar || '',
+      role: shouldBeAdmin ? 'ADMIN' : 'USER',
+      status: 'ACTIVE',
+      createdAt: new Date().toISOString(),
+      lastLogin: new Date().toISOString(),
+      googleDriveConnected: false,
+    };
+
+    this.memoryUsers.push(newUser);
+    return { user: newUser, isNew: true };
+  }
+
+  public addUser(user: User): User {
+    const existing = this.findUserById(user.id) || this.findUserByEmail(user.email);
+    if (!existing) {
+      this.memoryUsers.push(user);
+    } else {
+      Object.assign(existing, user);
+    }
+    return user;
+  }
+
+  public getUsers(): User[] {
+    return [...this.memoryUsers];
+  }
+
+  public findUserById(id: string): User | undefined {
+    return this.memoryUsers.find(u => u.id === id);
+  }
+
+  public findUserByGoogleId(googleId: string): User | undefined {
+    return this.memoryUsers.find(u => u.googleId === googleId);
+  }
+
+  public findUserByEmail(email: string): User | undefined {
+    const clean = email.trim().toLowerCase();
+    return this.memoryUsers.find(u => u.email.toLowerCase() === clean);
+  }
+
+  public updateUserRole(userId: string, role: 'ADMIN' | 'USER'): User | null {
+    const user = this.findUserById(userId);
+    if (user) {
+      user.role = role;
+      return user;
+    }
+    return null;
+  }
+
+  public updateUserStatus(userId: string, status: 'ACTIVE' | 'DISABLED'): User | null {
+    const user = this.findUserById(userId);
+    if (user) {
+      user.status = status;
+      return user;
+    }
+    return null;
+  }
+
+  public deleteUser(userId: string): boolean {
+    const idx = this.memoryUsers.findIndex(u => u.id === userId);
+    if (idx !== -1) {
+      this.memoryUsers.splice(idx, 1);
+      this.memoryVideos = this.memoryVideos.filter(v => v.userId !== userId);
+      this.memoryPlaylists = this.memoryPlaylists.filter(p => p.userId !== userId);
+      delete this.memoryConfigs[userId];
+      return true;
+    }
+    return false;
+  }
+
+  // Videos
+  public getVideos(userId?: string): VideoMetadata[] {
+    let list = [...this.memoryVideos];
+    if (userId) {
+      list = list.filter(v => !v.userId || v.userId === userId);
+    }
+    return list.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+  }
+
+  public getVideoById(id: string, userId?: string): VideoMetadata | undefined {
+    return this.memoryVideos.find(v => v.id === id && (!userId || !v.userId || v.userId === userId));
+  }
+
+  public addVideo(video: VideoMetadata): VideoMetadata {
+    this.memoryVideos.push(video);
+    return video;
+  }
+
+  public updateVideo(id: string, updates: Partial<VideoMetadata>, userId?: string): VideoMetadata | null {
+    const video = this.getVideoById(id, userId);
+    if (video) {
+      Object.assign(video, updates);
+      return video;
+    }
+    return null;
+  }
+
+  public renameVideo(id: string, newName: string, userId?: string): VideoMetadata | null {
+    const video = this.getVideoById(id, userId);
+    if (video) {
+      video.originalName = newName;
+      return video;
+    }
+    return null;
+  }
+
+  public deleteVideo(id: string, userId?: string): boolean {
+    const index = this.memoryVideos.findIndex(v => v.id === id && (!userId || !v.userId || v.userId === userId));
+    if (index !== -1) {
+      this.memoryVideos.splice(index, 1);
+      return true;
+    }
+    return false;
+  }
+
+  // Playlists
+  public getPlaylists(userId?: string): Playlist[] {
+    let list = [...this.memoryPlaylists];
+    if (userId) {
+      list = list.filter(p => !p.userId || p.userId === userId);
+    }
+    return list;
+  }
+
+  public getPlaylistById(id: string, userId?: string): Playlist | undefined {
+    return this.memoryPlaylists.find(p => p.id === id && (!userId || !p.userId || p.userId === userId));
+  }
+
+  public savePlaylist(playlist: Playlist): Playlist {
+    const existingIdx = this.memoryPlaylists.findIndex(p => p.id === playlist.id);
+    if (existingIdx !== -1) {
+      this.memoryPlaylists[existingIdx] = playlist;
+    } else {
+      this.memoryPlaylists.push(playlist);
+    }
+    return playlist;
+  }
+
+  public createPlaylist(userIdOrPlaylist: string | Playlist, name?: string, videoIds?: string[]): Playlist {
+    if (typeof userIdOrPlaylist === 'object') {
+      return this.savePlaylist(userIdOrPlaylist);
+    }
+    const userId = userIdOrPlaylist;
+    const newPlaylist: Playlist = {
+      id: `pl_${Date.now()}_${Math.random().toString(36).substring(2, 8)}`,
+      userId,
+      name: name || 'Untitled Playlist',
+      videoIds: videoIds || [],
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
+    };
+    this.memoryPlaylists.push(newPlaylist);
+    return newPlaylist;
+  }
+
+  public updatePlaylist(idOrPlaylist: string | Playlist, userIdOrUpdates?: string | Partial<Playlist>, updatesParam?: Partial<Playlist>): Playlist | null {
+    if (typeof idOrPlaylist === 'object') {
+      const pl = this.getPlaylistById(idOrPlaylist.id);
+      if (pl) {
+        Object.assign(pl, idOrPlaylist, { updatedAt: new Date().toISOString() });
+        return pl;
+      }
+      return null;
+    }
+
+    const id = idOrPlaylist;
+    const userId = typeof userIdOrUpdates === 'string' ? userIdOrUpdates : undefined;
+    const updates = typeof userIdOrUpdates === 'object' ? userIdOrUpdates : (updatesParam || {});
+
+    const pl = this.getPlaylistById(id, userId);
+    if (pl) {
+      Object.assign(pl, updates, { updatedAt: new Date().toISOString() });
+      return pl;
+    }
+    return null;
+  }
+
+  public deletePlaylist(id: string, userId?: string): boolean {
+    const index = this.memoryPlaylists.findIndex(p => p.id === id && (!userId || !p.userId || p.userId === userId));
+    if (index !== -1) {
+      this.memoryPlaylists.splice(index, 1);
+      return true;
+    }
+    return false;
+  }
+
+  // Stream Configs
+  public getStreamConfig(userId: string): StreamConfig {
+    if (this.memoryConfigs[userId]) {
+      return this.memoryConfigs[userId];
+    }
+    return {
+      userId,
+      rtmpUrl: this.settings.defaultRtmpUrl,
+      streamKey: '',
+      quality: 'source',
+      bitrate: '4000k',
+      fps: 'source',
+      autoReconnect: true,
+      reconnectDelay: 5,
+      loop: true,
+      audio: true,
+    };
+  }
+
+  public getUserStreamConfig(userId: string): StreamConfig {
+    return this.getStreamConfig(userId);
+  }
+
+  public saveStreamConfig(userId: string, config: Partial<StreamConfig>): StreamConfig {
+    const current = this.getStreamConfig(userId);
+    const updated = { ...current, ...config, userId };
+    this.memoryConfigs[userId] = updated;
+    return updated;
+  }
+
+  public saveUserStreamConfig(userId: string, config: Partial<StreamConfig>): StreamConfig {
+    return this.saveStreamConfig(userId, config);
+  }
+
+  // Sessions
+  public getSessions(userId?: string): StreamSession[] {
+    let list = [...this.memorySessions];
+    if (userId) {
+      list = list.filter(s => !s.userId || s.userId === userId);
+    }
+    return list.sort((a, b) => new Date(b.startedAt).getTime() - new Date(a.startedAt).getTime());
+  }
+
+  public addSession(session: StreamSession): StreamSession {
+    this.memorySessions.push(session);
+    return session;
+  }
+
+  public updateSession(id: string, updates: Partial<StreamSession>): StreamSession | null {
+    const session = this.memorySessions.find(s => s.id === id);
+    if (session) {
+      Object.assign(session, updates);
+      return session;
+    }
+    return null;
+  }
+
+  public clearSessions(userId?: string): void {
+    if (userId) {
+      this.memorySessions = this.memorySessions.filter(s => s.userId !== userId);
+    } else {
+      this.memorySessions = [];
+    }
+  }
+
+  // Settings
+  public getSettings(): SystemSettings {
+    return { ...this.settings };
+  }
+
+  public updateSettings(updates: Partial<SystemSettings>): SystemSettings {
+    this.settings = { ...this.settings, ...updates };
+    return { ...this.settings };
+  }
+}
+
+export const db = new SupabaseDatabase();
+db.init();

@@ -1,0 +1,6 @@
+{
+  "name": "StreamLoop 24x7 - YouTube RTMP Live Stream Engine",
+  "description": "Multi-user 24x7 YouTube RTMP loop streaming platform with Google OAuth authentication, isolated user video libraries & playlists, and dedicated administrator panel for server, user, storage, and stream process management.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  streamloop:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: streamloop_24x7
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+      - JWT_SECRET=your_super_secret_jwt_key_please_change
+      - MAX_UPLOAD_SIZE_MB=500
+      - AUTO_RECOVER_STREAM=true
+    volumes:
+      - ./uploads:/app/uploads
+      - ./data:/app/data
+    deploy:
+      resources:
+        limits:
+          cpus: '2.00'
+          memory: 2048M

@@ -1,0 +1,60 @@
+@import "tailwindcss";
+
+/* Global Scrollbar & Layout Rules */
+html {
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+  height: 100%;
+}
+
+body {
+  min-height: 100%;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  background-color: #080B12;
+  color: #f1f5f9;
+}
+
+#root {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Custom Sleek Dark-Themed Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(15, 23, 42, 0.6);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(99, 102, 241, 0.4);
+  border-radius: 9999px;
+  transition: background-color 0.2s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(99, 102, 241, 0.8);
+}
+
+/* Firefox standard scrollbar properties */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(99, 102, 241, 0.4) rgba(15, 23, 42, 0.6);
+}
+
+/* Custom scrollbar utility class */
+.custom-scrollbar {
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.custom-scrollbar-x {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
