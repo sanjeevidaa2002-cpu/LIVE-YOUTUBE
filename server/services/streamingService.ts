@@ -366,19 +366,17 @@ export class UserStreamEngine extends EventEmitter {
     // 4. Supabase Storage download / public URL check
     if (v.storageBucket && v.storagePath) {
       try {
-        const { createClient } = await import('@supabase/supabase-js');
         const url = process.env.SUPABASE_URL || process.env.VITE_SUPABASE_URL;
         const key = process.env.SUPABASE_ANON_KEY || process.env.VITE_SUPABASE_ANON_KEY;
-        if (url && key && !url.includes('placeholder')) {
+        if (url && key && !url.includes('placeholder') && !url.includes('YOUR_SUPABASE_PROJECT_URL') && url.startsWith('http')) {
+          const { createClient } = await import('@supabase/supabase-js');
           const client = createClient(url, key);
           const { data } = client.storage.from(v.storageBucket).getPublicUrl(v.storagePath);
           if (data?.publicUrl) {
             return { inputPath: data.publicUrl, isRemote: true, hasAudio: v.hasAudio !== false };
           }
         }
-      } catch (sbErr) {
-        console.warn('[Storage fallback warning]:', sbErr);
-      }
+      } catch {}
     }
 
     // 5. YouTube Live stream, YouTube video, or missing local file broadcast loop generation

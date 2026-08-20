@@ -23,11 +23,21 @@ if (!fs.existsSync(UPLOADS_DIR)) fs.mkdirSync(UPLOADS_DIR, { recursive: true });
 if (!fs.existsSync(THUMBNAILS_DIR)) fs.mkdirSync(THUMBNAILS_DIR, { recursive: true });
 if (!fs.existsSync(TEMP_CHUNKS_DIR)) fs.mkdirSync(TEMP_CHUNKS_DIR, { recursive: true });
 
-const supabaseUrl = process.env.SUPABASE_URL || process.env.VITE_SUPABASE_URL;
-const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_ANON_KEY || process.env.VITE_SUPABASE_ANON_KEY;
-const sbStorage = (supabaseUrl && supabaseKey && !supabaseUrl.includes('placeholder'))
-  ? createClient(supabaseUrl, supabaseKey)
-  : null;
+function getSupabaseClient() {
+  const url = process.env.SUPABASE_URL || process.env.VITE_SUPABASE_URL;
+  const key = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_ANON_KEY || process.env.VITE_SUPABASE_ANON_KEY;
+  if (!url || !key) return null;
+  if (url.includes('placeholder') || url.includes('YOUR_SUPABASE_PROJECT_URL') || url.includes('example.supabase.co')) {
+    return null;
+  }
+  try {
+    const parsed = new URL(url);
+    if (!parsed.protocol.startsWith('http')) return null;
+    return createClient(url, key);
+  } catch {
+    return null;
+  }
+}
 
 // Helper to optimize any video format into a web-compatible faststart MP4
 async function processAndUploadVideo(filePath: string, userId: string, storedName: string, meta?: any): Promise<{ storageBucket: string; storagePath: string; storageProvider: 'supabase' | 'local'; finalPath: string }> {
@@ -128,23 +138,30 @@ async function processAndUploadVideo(filePath: string, userId: string, storedNam
   const storagePath = `videos/${userId}/${storedName}`;
   let storageProvider: 'supabase' | 'local' = 'local';
 
-  if (sbStorage && fs.existsSync(finalPath)) {
+  const sbClient = getSupabaseClient();
+  if (sbClient && fs.existsSync(finalPath)) {
     try {
-      const fileBuffer = fs.readFileSync(finalPath);
-      const { error: uploadErr } = await sbStorage.storage
-        .from(storageBucket)
-        .upload(storagePath, fileBuffer, {
-          contentType: 'video/mp4',
-          upsert: true,
-        });
-      if (!uploadErr) {
-        storageProvider = 'supabase';
-        console.log(`[Supabase Storage] Successfully uploaded video to ${storageBucket}/${storagePath}`);
+      // Check file size: if larger than 45MB, keep locally on VPS to avoid fetch timeouts
+      const fileSizeMb = fs.statSync(finalPath).size / (1024 * 1024);
+      if (fileSizeMb <= 50) {
+        const fileBuffer = fs.readFileSync(finalPath);
+        const { error: uploadErr } = await sbClient.storage
+          .from(storageBucket)
+          .upload(storagePath, fileBuffer, {
+            contentType: 'video/mp4',
+            upsert: true,
+          });
+        if (!uploadErr) {
+          storageProvider = 'supabase';
+          console.log(`[Supabase Storage] Successfully synced video to ${storageBucket}/${storagePath}`);
+        } else {
+          console.log(`[Storage Provider] Note on cloud sync: ${uploadErr.message}. Serving securely from local server storage.`);
+        }
       } else {
-        console.warn('[Supabase Storage] Upload warning:', uploadErr.message);
+        console.log(`[Storage Provider] Video size (${fileSizeMb.toFixed(1)}MB) exceeds direct cloud buffer limit. Storing directly on fast local server storage.`);
       }
-    } catch (e) {
-      console.warn('[Supabase Storage] Upload exception:', e);
+    } catch (e: any) {
+      console.log(`[Storage Provider] Cloud storage sync offline or unreachable (${e?.message || e}). Using local storage.`);
     }
   }
 
@@ -242,9 +259,10 @@ router.get('/:id/preview', async (req: Request, res: Response) => {
   }
 
   // If Supabase storage path exists, attempt to redirect to signed/public URL or stream
-  if (sbStorage && video.storageBucket && video.storagePath) {
+  const sbClient = getSupabaseClient();
+  if (sbClient && video.storageBucket && video.storagePath) {
     try {
-      const { data } = sbStorage.storage.from(video.storageBucket).getPublicUrl(video.storagePath);
+      const { data } = sbClient.storage.from(video.storageBucket).getPublicUrl(video.storagePath);
       if (data?.publicUrl) {
         return res.redirect(data.publicUrl);
       }
@@ -1093,9 +1111,10 @@ router.delete('/:id', async (req: AuthenticatedRequest, res: Response) => {
   }
 
   // Delete from Supabase Storage if applicable
-  if (sbStorage && video.storageBucket && video.storagePath) {
+  const sbClient = getSupabaseClient();
+  if (sbClient && video.storageBucket && video.storagePath) {
     try {
-      await sbStorage.storage.from(video.storageBucket).remove([video.storagePath]);
+      await sbClient.storage.from(video.storageBucket).remove([video.storagePath]);
     } catch {}
   }
 
