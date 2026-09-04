@@ -7,11 +7,11 @@ export const AdminLogsPage: React.FC = () => {
   const [logs, setLogs] = useState<LogEntry[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
-  const fetchLogs = async () => {
-    setIsLoading(true);
+  const fetchLogs = async (quiet = false) => {
+    if (!quiet) setIsLoading(true);
     try {
       const data = await apiFetch<{ logs: LogEntry[] }>('/api/stream/logs?limit=200');
-      setLogs(data.logs);
+      setLogs(data?.logs || []);
     } catch (e) {
       console.error('Failed to fetch logs:', e);
     } finally {
@@ -21,7 +21,7 @@ export const AdminLogsPage: React.FC = () => {
 
   useEffect(() => {
     fetchLogs();
-    const interval = setInterval(() => fetchLogs(), 4000);
+    const interval = setInterval(() => fetchLogs(true), 5000);
     return () => clearInterval(interval);
   }, []);
 
@@ -56,7 +56,7 @@ export const AdminLogsPage: React.FC = () => {
           </button>
 
           <button
-            onClick={fetchLogs}
+            onClick={() => fetchLogs()}
             disabled={isLoading}
             className="inline-flex items-center gap-2 rounded-xl bg-slate-900 px-3.5 py-2 text-xs font-semibold text-slate-300 border border-slate-800 hover:bg-slate-800 hover:text-white transition-all cursor-pointer"
           >

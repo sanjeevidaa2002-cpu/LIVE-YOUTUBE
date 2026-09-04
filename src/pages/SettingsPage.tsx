@@ -62,6 +62,8 @@ export const SettingsPage: React.FC = () => {
     maxUploadSizeMb: 500,
     allowedExtensions: ['.mp4', '.mkv', '.mov', '.avi', '.flv', '.webm', '.ts'],
     autoRecoverOnBoot: true,
+    maxConcurrentStreams: 5,
+    adminGoogleEmails: ['lightgaming4m@gmail.com'],
     googleDriveEnabled: true,
     googleDriveFolderId: '',
     googleDriveApiKey: '',
@@ -475,7 +477,7 @@ export const SettingsPage: React.FC = () => {
   }
 
   const isDriveConnected = storageStatus?.status === 'READY';
-  const isStreamLive = streamStatus?.status === 'LIVE' || streamStatus?.status === 'STARTING';
+  const isStreamLive = streamStatus === 'LIVE' || streamStatus === 'STARTING';
 
   return (
     <div className="space-y-8 max-w-5xl mx-auto pb-16">

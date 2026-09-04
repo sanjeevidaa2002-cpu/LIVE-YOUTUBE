@@ -123,7 +123,7 @@ export const AdminStoragePage: React.FC = () => {
           <div>
             <span className="text-slate-500 text-[11px] block">Cached Segments</span>
             <span className="font-semibold text-slate-300">
-              {storageStatus?.cacheStats?.totalCachedFiles || 0} files ({storageStatus?.cacheStats?.totalSizeBytes ? Math.round(storageStatus.cacheStats.totalSizeBytes / 1024 / 1024) : 0} MB)
+              {storageStatus?.cacheStats?.count || 0} files ({storageStatus?.cacheStats?.totalSizeBytes ? Math.round(storageStatus.cacheStats.totalSizeBytes / 1024 / 1024) : 0} MB)
             </span>
           </div>
         </div>

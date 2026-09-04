@@ -25,7 +25,7 @@ export const AdminStreamsPage: React.FC = () => {
     if (!quiet) setIsLoading(true);
     try {
       const data = await apiFetch<{ streams: AdminStreamItem[] }>('/api/admin/streams');
-      setStreams(data.streams);
+      setStreams(data?.streams || []);
     } catch (err: any) {
       setFeedback({ type: 'error', message: err.message || 'Failed to fetch active streams' });
     } finally {
@@ -128,7 +128,7 @@ export const AdminStreamsPage: React.FC = () => {
                     />
                   ) : (
                     <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-emerald-500/10 text-emerald-400 font-bold text-sm ring-2 ring-emerald-500/30">
-                      {stream.userName.charAt(0).toUpperCase()}
+                      {(stream.userName || stream.userEmail || 'U').charAt(0).toUpperCase()}
                     </div>
                   )}
                   <div>

@@ -18,11 +18,13 @@ export const AdminSystemPage: React.FC = () => {
   const [systemInfo, setSystemInfo] = useState<SystemStatusInfo | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
-  const fetchSystem = async () => {
-    setIsLoading(true);
+  const fetchSystem = async (quiet = false) => {
+    if (!quiet) setIsLoading(true);
     try {
       const data = await apiFetch<{ system: SystemStatusInfo }>('/api/admin/system');
-      setSystemInfo(data.system);
+      if (data?.system) {
+        setSystemInfo(data.system);
+      }
     } catch (err) {
       console.error('Failed to fetch system diagnostics:', err);
     } finally {
@@ -32,7 +34,7 @@ export const AdminSystemPage: React.FC = () => {
 
   useEffect(() => {
     fetchSystem();
-    const interval = setInterval(() => fetchSystem(), 10000);
+    const interval = setInterval(() => fetchSystem(true), 12000);
     return () => clearInterval(interval);
   }, []);
 
@@ -53,7 +55,7 @@ export const AdminSystemPage: React.FC = () => {
         </div>
 
         <button
-          onClick={fetchSystem}
+          onClick={() => fetchSystem()}
           disabled={isLoading}
           className="inline-flex items-center gap-2 rounded-xl bg-slate-900 px-3.5 py-2 text-xs font-semibold text-slate-300 border border-slate-800 hover:bg-slate-800 hover:text-white transition-all cursor-pointer"
         >

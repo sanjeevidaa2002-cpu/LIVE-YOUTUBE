@@ -129,14 +129,31 @@ export const VideoUploadModal: React.FC<VideoUploadModalProps> = ({
   const queueRef = useRef<UploadQueueItem[]>([]);
   const activeUploadsCountRef = useRef<number>(0);
   const isProcessingQueueRef = useRef<boolean>(false);
+  const isMountedRef = useRef<boolean>(true);
 
   // Keep queueRef in sync with queue state
   useEffect(() => {
     queueRef.current = queue;
   }, [queue]);
 
+  // Clean up all active XHRs and mark unmounted on unmount
+  useEffect(() => {
+    isMountedRef.current = true;
+    return () => {
+      isMountedRef.current = false;
+      queueRef.current.forEach((item) => {
+        if (item.xhr) {
+          try {
+            item.xhr.abort();
+          } catch {}
+        }
+      });
+    };
+  }, []);
+
   // Detect YouTube URL on remoteUrl changes
   useEffect(() => {
+    let isCancelled = false;
     setDuplicateVideo(null);
     const yt = extractYouTubeClient(remoteUrl);
     setDetectedYt(yt);
@@ -146,9 +163,9 @@ export const VideoUploadModal: React.FC<VideoUploadModalProps> = ({
       const timer = setTimeout(async () => {
         try {
           const res = await fetch(`/api/videos/youtube/info?url=${encodeURIComponent(remoteUrl)}`);
-          if (res.ok) {
+          if (res.ok && !isCancelled) {
             const data = await res.json();
-            if (data.detected) {
+            if (data.detected && !isCancelled) {
               setYtPreview({
                 title: data.title,
                 channelTitle: data.channelTitle,
@@ -162,17 +179,26 @@ export const VideoUploadModal: React.FC<VideoUploadModalProps> = ({
             }
           }
         } catch {} finally {
-          setIsLoadingYtMeta(false);
+          if (!isCancelled) {
+            setIsLoadingYtMeta(false);
+          }
         }
       }, 400);
-      return () => clearTimeout(timer);
+      return () => {
+        isCancelled = true;
+        clearTimeout(timer);
+      };
     } else {
       setYtPreview(null);
       setIsLoadingYtMeta(false);
     }
+    return () => {
+      isCancelled = true;
+    };
   }, [remoteUrl]);
 
   const updateItem = useCallback((id: string, updates: Partial<UploadQueueItem>) => {
+    if (!isMountedRef.current) return;
     setQueue((prev) =>
       prev.map((item) => (item.id === id ? { ...item, ...updates } : item))
     );

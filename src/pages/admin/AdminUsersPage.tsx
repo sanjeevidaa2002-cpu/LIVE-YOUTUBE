@@ -29,7 +29,7 @@ export const AdminUsersPage: React.FC = () => {
     setIsLoading(true);
     try {
       const data = await apiFetch<{ users: User[] }>('/api/admin/users');
-      setUsers(data.users);
+      setUsers(data?.users || []);
     } catch (err: any) {
       setFeedback({ type: 'error', message: err.message || 'Failed to fetch users' });
     } finally {
@@ -93,11 +93,11 @@ export const AdminUsersPage: React.FC = () => {
     }
   };
 
-  const filteredUsers = users.filter(
+  const filteredUsers = (users || []).filter(
     (u) =>
-      u.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      u.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      u.googleId.toLowerCase().includes(searchTerm.toLowerCase())
+      (u?.email || '').toLowerCase().includes((searchTerm || '').toLowerCase()) ||
+      (u?.name || '').toLowerCase().includes((searchTerm || '').toLowerCase()) ||
+      (u?.googleId || '').toLowerCase().includes((searchTerm || '').toLowerCase())
   );
 
   return (
@@ -193,7 +193,7 @@ export const AdminUsersPage: React.FC = () => {
                             />
                           ) : (
                             <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-indigo-600/20 text-indigo-400 font-bold text-xs ring-1 ring-indigo-500/30">
-                              {u.name.charAt(0).toUpperCase()}
+                              {(u.name || u.email || 'U').charAt(0).toUpperCase()}
                             </div>
                           )}
                           <div className="min-w-0">

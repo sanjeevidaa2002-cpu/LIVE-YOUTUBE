@@ -28,11 +28,36 @@ export const StreamProvider: React.FC<{ children: React.ReactNode }> = ({ childr
   const [actionError, setActionError] = useState<string | null>(null);
   const eventSourceRef = useRef<EventSource | null>(null);
 
+  const logBufferRef = useRef<LogEntry[]>([]);
+  const logFlushTimeoutRef = useRef<any>(null);
+
+  const flushLogBuffer = useCallback(() => {
+    if (logBufferRef.current.length === 0) return;
+    const batch = logBufferRef.current;
+    logBufferRef.current = [];
+    setLogs((prev) => {
+      const next = [...prev, ...batch];
+      return next.length > 500 ? next.slice(-500) : next;
+    });
+  }, []);
+
+  const queueLogEntry = useCallback((newLog: LogEntry) => {
+    logBufferRef.current.push(newLog);
+    if (!logFlushTimeoutRef.current) {
+      logFlushTimeoutRef.current = setTimeout(() => {
+        logFlushTimeoutRef.current = null;
+        flushLogBuffer();
+      }, 250);
+    }
+  }, [flushLogBuffer]);
+
   const refreshStatus = useCallback(async () => {
     if (!isAuthenticated) return;
     try {
       const data = await apiFetch<StreamState>('/api/stream/status');
-      setStreamState(data);
+      if (data && typeof data === 'object') {
+        setStreamState(data);
+      }
     } catch (err) {
       console.warn('Failed to fetch stream status:', err);
     }
@@ -42,7 +67,9 @@ export const StreamProvider: React.FC<{ children: React.ReactNode }> = ({ childr
     if (!isAuthenticated) return;
     try {
       const data = await apiFetch<{ logs: LogEntry[] }>('/api/stream/logs?limit=100');
-      setLogs(data.logs || []);
+      if (data && Array.isArray(data.logs)) {
+        setLogs(data.logs);
+      }
     } catch (err) {
       console.warn('Failed to fetch logs:', err);
     }
@@ -50,6 +77,8 @@ export const StreamProvider: React.FC<{ children: React.ReactNode }> = ({ childr
 
   // Connect SSE or setup polling
   useEffect(() => {
+    let isMounted = true;
+
     if (!isAuthenticated || !token) {
       if (eventSourceRef.current) {
         eventSourceRef.current.close();
@@ -58,59 +87,74 @@ export const StreamProvider: React.FC<{ children: React.ReactNode }> = ({ childr
       return;
     }
 
-    refreshStatus().finally(() => setIsLoading(false));
+    refreshStatus().finally(() => {
+      if (isMounted) setIsLoading(false);
+    });
     refreshLogs();
 
-    let sseSupported = true;
     try {
       const sseUrl = `/api/stream/events?token=${encodeURIComponent(token)}`;
       const es = new EventSource(sseUrl);
       eventSourceRef.current = es;
 
       es.addEventListener('status', (e) => {
+        if (!isMounted) return;
         try {
           const parsed = JSON.parse(e.data);
-          setStreamState(parsed);
+          if (parsed && typeof parsed === 'object') {
+            setStreamState(parsed);
+          }
         } catch {}
       });
 
       es.addEventListener('log', (e) => {
+        if (!isMounted) return;
         try {
           const newLog = JSON.parse(e.data);
-          setLogs((prev) => {
-            const next = [...prev, newLog];
-            return next.length > 500 ? next.slice(-500) : next;
-          });
+          if (newLog && typeof newLog === 'object') {
+            queueLogEntry(newLog);
+          }
         } catch {}
       });
 
       es.addEventListener('logs', (e) => {
+        if (!isMounted) return;
         try {
           const initialLogs = JSON.parse(e.data);
-          setLogs(initialLogs);
+          if (Array.isArray(initialLogs)) {
+            setLogs(initialLogs);
+          }
         } catch {}
       });
 
       es.onerror = () => {
-        sseSupported = false;
+        // Handled silently; browser will retry or polling will cover it
       };
-    } catch {
-      sseSupported = false;
+    } catch (err) {
+      console.warn('[StreamContext] SSE initialization skipped:', err);
     }
 
-    // Secondary polling interval (every 3 seconds) for robust state sync
+    // Secondary polling interval (every 4 seconds) for robust state sync
     const pollInterval = setInterval(() => {
-      refreshStatus();
-    }, 3000);
+      if (isMounted) {
+        refreshStatus();
+      }
+    }, 4000);
 
     return () => {
+      isMounted = false;
       clearInterval(pollInterval);
+      if (logFlushTimeoutRef.current) {
+        clearTimeout(logFlushTimeoutRef.current);
+        logFlushTimeoutRef.current = null;
+      }
+      flushLogBuffer();
       if (eventSourceRef.current) {
         eventSourceRef.current.close();
         eventSourceRef.current = null;
       }
     };
-  }, [isAuthenticated, token, refreshStatus, refreshLogs]);
+  }, [isAuthenticated, token, refreshStatus, refreshLogs, queueLogEntry, flushLogBuffer]);
 
   const startStream = async (config: StreamConfig): Promise<boolean> => {
     setIsActionLoading(true);

@@ -12,6 +12,7 @@ interface AuthContextType {
   signIn: (email: string, pass: string) => Promise<User>;
   signUp: (fullName: string, email: string, pass: string) => Promise<User>;
   signOut: () => Promise<void>;
+  logout: () => Promise<void>;
   forgotPassword: (email: string) => Promise<void>;
   refreshUser: () => Promise<void>;
 }
@@ -20,10 +21,28 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [user, setUser] = useState<User | null>(() => {
-    const saved = localStorage.getItem('streamloop_user');
-    return saved ? JSON.parse(saved) : null;
+    try {
+      const saved = localStorage.getItem('streamloop_user');
+      if (saved && saved !== 'undefined' && saved !== 'null') {
+        return JSON.parse(saved);
+      }
+    } catch (e) {
+      console.warn('[AuthContext] Corrupted stored user cleared:', e);
+      try {
+        localStorage.removeItem('streamloop_user');
+      } catch {}
+    }
+    return null;
   });
-  const [token, setToken] = useState<string | null>(() => localStorage.getItem('streamloop_token'));
+  const [token, setToken] = useState<string | null>(() => {
+    try {
+      const savedToken = localStorage.getItem('streamloop_token');
+      if (savedToken && savedToken !== 'undefined' && savedToken !== 'null') {
+        return savedToken;
+      }
+    } catch {}
+    return null;
+  });
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   const logout = useCallback(async () => {
@@ -240,6 +259,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         signIn,
         signUp,
         signOut: logout,
+        logout,
         forgotPassword,
         refreshUser,
       }}

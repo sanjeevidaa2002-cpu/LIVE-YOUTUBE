@@ -206,15 +206,15 @@ export const VideoLibraryPage: React.FC<VideoLibraryPageProps> = ({
       return (
         streamState?.video?.id === video.id ||
         streamState?.playlist?.some((p) => p.id === video.id) ||
-        streamState?.activeConfig?.videoIds?.includes(video.id) ||
-        streamState?.activeConfig?.videoId === video.id
+        streamState?.config?.videoIds?.includes(video.id) ||
+        streamState?.config?.videoId === video.id
       );
     }
     return false;
   };
 
-  const filteredVideos = videos.filter((v) =>
-    v.originalName.toLowerCase().includes(searchQuery.toLowerCase())
+  const filteredVideos = (videos || []).filter((v) =>
+    (v?.originalName || '').toLowerCase().includes((searchQuery || '').toLowerCase())
   );
 
   return (

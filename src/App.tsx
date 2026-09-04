@@ -17,6 +17,7 @@ import { AdminLoginPage } from './pages/AdminLoginPage.tsx';
 import { SupabaseSetupPage } from './pages/SupabaseSetupPage.tsx';
 import { VideoUploadModal } from './components/VideoUploadModal.tsx';
 import { VideoMetadata, User } from './types/index.ts';
+import { ErrorBoundary } from './components/ErrorBoundary.tsx';
 
 // Admin Panel Pages
 import { AdminOverviewPage } from './pages/admin/AdminOverviewPage.tsx';
@@ -233,14 +234,16 @@ const AppContent: React.FC = () => {
           </header>
 
           <main className="flex-1 p-4 sm:p-6 lg:p-8 max-w-7xl w-full mx-auto">
-            {adminTab === 'overview' && <AdminOverviewPage onNavigateTab={(t) => setAdminTab(t as AdminTab)} />}
-            {adminTab === 'users' && <AdminUsersPage />}
-            {adminTab === 'streams' && <AdminStreamsPage />}
-            {adminTab === 'storage' && <AdminStoragePage />}
-            {adminTab === 'settings' && <AdminSettingsPage />}
-            {adminTab === 'system' && <AdminSystemPage />}
-            {adminTab === 'logs' && <AdminLogsPage />}
-            {adminTab === 'security' && <AdminSecurityPage />}
+            <ErrorBoundary fallbackTitle="Admin Section Recovered">
+              {adminTab === 'overview' && <AdminOverviewPage onNavigateTab={(t) => setAdminTab(t as AdminTab)} />}
+              {adminTab === 'users' && <AdminUsersPage />}
+              {adminTab === 'streams' && <AdminStreamsPage />}
+              {adminTab === 'storage' && <AdminStoragePage />}
+              {adminTab === 'settings' && <AdminSettingsPage />}
+              {adminTab === 'system' && <AdminSystemPage />}
+              {adminTab === 'logs' && <AdminLogsPage />}
+              {adminTab === 'security' && <AdminSecurityPage />}
+            </ErrorBoundary>
           </main>
         </div>
       </div>
@@ -282,44 +285,46 @@ const AppContent: React.FC = () => {
         />
 
         <main className="flex-1 p-4 sm:p-6 lg:p-8 max-w-7xl w-full mx-auto">
-          {userTab === 'dashboard' && (
-            <DashboardPage
-              onNavigate={setUserTab}
-              onOpenUpload={() => setIsUploadModalOpen(true)}
-            />
-          )}
+          <ErrorBoundary fallbackTitle="Page View Recovered">
+            {userTab === 'dashboard' && (
+              <DashboardPage
+                onNavigate={setUserTab}
+                onOpenUpload={() => setIsUploadModalOpen(true)}
+              />
+            )}
 
-          {userTab === 'playlist' && (
-            <PlaylistPage
-              onNavigate={setUserTab}
-              onOpenUpload={() => setIsUploadModalOpen(true)}
-              onStreamPlaylist={handleSelectPlaylistForStream}
-            />
-          )}
+            {userTab === 'playlist' && (
+              <PlaylistPage
+                onNavigate={setUserTab}
+                onOpenUpload={() => setIsUploadModalOpen(true)}
+                onStreamPlaylist={handleSelectPlaylistForStream}
+              />
+            )}
 
-          {userTab === 'library' && (
-            <VideoLibraryPage
-              onOpenUpload={() => setIsUploadModalOpen(true)}
-              onSelectForStream={handleSelectVideoForStream}
-              onSelectPlaylistForStream={handleSelectPlaylistForStream}
-              onNavigate={setUserTab}
-            />
-          )}
+            {userTab === 'library' && (
+              <VideoLibraryPage
+                onOpenUpload={() => setIsUploadModalOpen(true)}
+                onSelectForStream={handleSelectVideoForStream}
+                onSelectPlaylistForStream={handleSelectPlaylistForStream}
+                onNavigate={setUserTab}
+              />
+            )}
 
-          {userTab === 'start-stream' && (
-            <StartStreamPage
-              selectedVideo={preselectedVideo}
-              selectedPlaylist={preselectedPlaylist}
-              onNavigate={setUserTab}
-              onOpenUpload={() => setIsUploadModalOpen(true)}
-            />
-          )}
+            {userTab === 'start-stream' && (
+              <StartStreamPage
+                selectedVideo={preselectedVideo}
+                selectedPlaylist={preselectedPlaylist}
+                onNavigate={setUserTab}
+                onOpenUpload={() => setIsUploadModalOpen(true)}
+              />
+            )}
 
-          {userTab === 'active-stream' && (
-            <ActiveStreamPage onNavigate={setUserTab} />
-          )}
+            {userTab === 'active-stream' && (
+              <ActiveStreamPage onNavigate={setUserTab} />
+            )}
 
-          {userTab === 'history' && <StreamHistoryPage />}
+            {userTab === 'history' && <StreamHistoryPage />}
+          </ErrorBoundary>
         </main>
       </div>
 

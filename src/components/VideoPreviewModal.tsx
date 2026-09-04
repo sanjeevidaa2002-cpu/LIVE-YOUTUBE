@@ -339,14 +339,14 @@ export const VideoPreviewModal: React.FC<VideoPreviewModalProps> = ({
                 <span>Player</span>
               </div>
               <p className="font-semibold text-xs text-white truncate">
-                {isYouTube ? 'YouTube Embedded Player' : `${video.videoCodec.toUpperCase()} + ${video.audioCodec?.toUpperCase() || 'AAC'}`}
+                {isYouTube ? 'YouTube Embedded Player' : `${(video.videoCodec || 'H.264').toUpperCase()} + ${(video.audioCodec || 'AAC').toUpperCase()}`}
               </p>
             </div>
           </div>
 
           <div className="flex items-center justify-between pt-2 border-t border-slate-800/80">
             <span className="text-xs text-slate-400">
-              {isYouTube ? 'Imported from YouTube' : 'Uploaded'} on {new Date(video.createdAt).toLocaleDateString()} at {new Date(video.createdAt).toLocaleTimeString()}
+              {isYouTube ? 'Imported from YouTube' : 'Uploaded'} on {video.createdAt ? new Date(video.createdAt).toLocaleDateString() : 'N/A'} at {video.createdAt ? new Date(video.createdAt).toLocaleTimeString() : 'N/A'}
             </span>
             {onSelectForStream && (
               <button
