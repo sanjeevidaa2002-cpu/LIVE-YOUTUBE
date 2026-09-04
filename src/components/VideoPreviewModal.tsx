@@ -26,18 +26,24 @@ export const VideoPreviewModal: React.FC<VideoPreviewModalProps> = ({
 
   const isYouTube = video?.sourceType === 'YOUTUBE' || video?.sourceType === 'YOUTUBE_LIVE' || Boolean(video?.youtubeVideoId);
   const isYouTubeLive = video?.sourceType === 'YOUTUBE_LIVE' || video?.liveStatus === 'LIVE';
+  const hasLocalPlayableFile = Boolean(video?.path || (video?.size && video.size > 0));
+
+  const [previewMode, setPreviewMode] = useState<'server' | 'embed'>(
+    hasLocalPlayableFile ? 'server' : (isYouTube ? 'embed' : 'server')
+  );
 
   useEffect(() => {
     setHasError(false);
     setErrorMessage('');
-    setIsLoadingMetadata(!isYouTube);
+    const shouldLoad = previewMode === 'server';
+    setIsLoadingMetadata(shouldLoad);
     setVideoEventLog([]);
     setNetworkStatus('Loading source...');
 
-    if (!isYouTube && videoRef.current) {
+    if (shouldLoad && videoRef.current) {
       videoRef.current.load();
     }
-  }, [video, retryCount, isYouTube]);
+  }, [video, retryCount, previewMode]);
 
   if (!video) return null;
 
@@ -112,6 +118,32 @@ export const VideoPreviewModal: React.FC<VideoPreviewModalProps> = ({
             </div>
           </div>
           <div className="flex items-center gap-2 shrink-0">
+            {isYouTube && hasLocalPlayableFile && (
+              <div className="flex items-center bg-slate-900 border border-slate-800 rounded-lg p-0.5">
+                <button
+                  type="button"
+                  onClick={() => setPreviewMode('server')}
+                  className={`px-2.5 py-1 text-xs font-semibold rounded-md transition-all ${
+                    previewMode === 'server'
+                      ? 'bg-indigo-600 text-white shadow-sm'
+                      : 'text-slate-400 hover:text-white'
+                  }`}
+                >
+                  Play Server MP4
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setPreviewMode('embed')}
+                  className={`px-2.5 py-1 text-xs font-semibold rounded-md transition-all ${
+                    previewMode === 'embed'
+                      ? 'bg-red-600 text-white shadow-sm'
+                      : 'text-slate-400 hover:text-white'
+                  }`}
+                >
+                  YouTube Embed
+                </button>
+              </div>
+            )}
             {youtubeWatchUrl && (
               <a
                 href={youtubeWatchUrl}
@@ -123,7 +155,7 @@ export const VideoPreviewModal: React.FC<VideoPreviewModalProps> = ({
                 <span>YouTube</span>
               </a>
             )}
-            {!isYouTube && (
+            {previewMode === 'server' && (
               <button
                 onClick={() => setShowDebug(!showDebug)}
                 className={`rounded-lg px-2.5 py-1 text-xs font-mono transition-colors border ${
@@ -145,7 +177,7 @@ export const VideoPreviewModal: React.FC<VideoPreviewModalProps> = ({
 
         {/* Video Player & Error Screen */}
         <div className="relative bg-black flex items-center justify-center aspect-video w-full max-h-[52vh]">
-          {isYouTube ? (
+          {previewMode === 'embed' && isYouTube ? (
             <iframe
               title={video.originalName}
               src={`https://www.youtube-nocookie.com/embed/${youtubeVideoId}?autoplay=1&enablejsapi=1&rel=0`}
@@ -225,7 +257,7 @@ export const VideoPreviewModal: React.FC<VideoPreviewModalProps> = ({
           )}
 
           {/* Loading Overlay */}
-          {isLoadingMetadata && !hasError && !isYouTube && (
+          {isLoadingMetadata && !hasError && previewMode === 'server' && (
             <div className="absolute top-3 left-3 bg-slate-900/80 backdrop-blur-md border border-slate-700/60 rounded-lg px-3 py-1.5 flex items-center gap-2 text-xs text-slate-200">
               <span className="h-2 w-2 rounded-full bg-amber-400 animate-pulse" />
               <span>Loading video stream...</span>
@@ -234,7 +266,7 @@ export const VideoPreviewModal: React.FC<VideoPreviewModalProps> = ({
         </div>
 
         {/* Diagnostic Debug Panel */}
-        {showDebug && !isYouTube && (
+        {showDebug && previewMode === 'server' && (
           <div className="bg-slate-950 border-t border-slate-800 p-4 font-mono text-xs text-slate-300 max-h-48 overflow-y-auto space-y-2">
             <div className="flex items-center justify-between text-indigo-400 font-bold border-b border-slate-800 pb-1">
               <span>Video Diagnostic Inspector</span>

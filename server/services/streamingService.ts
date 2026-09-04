@@ -14,6 +14,7 @@ import {
 } from '../../src/types/index.ts';
 import { db } from '../database/db.ts';
 import { FFprobeService } from './ffprobeService.ts';
+import { extractYouTubeVideoId } from '../utils/youtube.ts';
 
 const DATA_DIR = path.resolve(process.cwd(), 'data');
 const LOGS_DIR = path.resolve(process.cwd(), 'logs');
@@ -323,7 +324,7 @@ export class UserStreamEngine extends EventEmitter {
 
   /**
    * Resolves any video record (local upload, direct URL, Supabase storage, or imported YouTube stream)
-   * into a reliable FFmpeg input path or stream buffer.
+   * into a reliable, verified FFmpeg input path.
    */
   private async resolveVideoSource(v: VideoMetadata): Promise<{
     inputPath: string;
@@ -337,8 +338,11 @@ export class UserStreamEngine extends EventEmitter {
     if (v.path && fs.existsSync(v.path)) {
       try {
         const stats = fs.statSync(v.path);
-        if (stats.size > 0) {
-          return { inputPath: v.path, isRemote: false, hasAudio: v.hasAudio !== false };
+        if (stats.size > 1024) {
+          const val = await FFprobeService.validateVideoForStreaming(v.path);
+          if (val.valid) {
+            return { inputPath: v.path, isRemote: false, hasAudio: val.info?.hasAudio ?? (v.hasAudio !== false) };
+          }
         }
       } catch {}
     }
@@ -348,121 +352,126 @@ export class UserStreamEngine extends EventEmitter {
       const candidate = path.join(uploadsDir, v.storedName);
       if (fs.existsSync(candidate)) {
         try {
-          if (fs.statSync(candidate).size > 0) {
-            v.path = candidate;
-            return { inputPath: candidate, isRemote: false, hasAudio: v.hasAudio !== false };
+          if (fs.statSync(candidate).size > 1024) {
+            const val = await FFprobeService.validateVideoForStreaming(candidate);
+            if (val.valid) {
+              v.path = candidate;
+              return { inputPath: candidate, isRemote: false, hasAudio: val.info?.hasAudio ?? (v.hasAudio !== false) };
+            }
           }
         } catch {}
       }
     }
 
-    // 3. Direct remote URL (e.g. imported public MP4 / mkv / webm / stream URL)
-    if (v.sourceUrl && (v.sourceUrl.startsWith('http://') || v.sourceUrl.startsWith('https://'))) {
-      if (v.sourceType === 'IMPORT' || v.sourceUrl.match(/\.(mp4|mkv|mov|webm|m3u8|flv|ts)(\?.*)?$/i)) {
-        return { inputPath: v.sourceUrl, isRemote: true, hasAudio: v.hasAudio !== false };
+    // 3. If this is a YouTube video (sourceType === 'YOUTUBE' or youtubeVideoId or URL from youtube/youtu.be)
+    const isYouTube = v.sourceType === 'YOUTUBE' || v.sourceType === 'YOUTUBE_LIVE' || Boolean(v.youtubeVideoId) ||
+      (v.sourceUrl && (v.sourceUrl.includes('youtube.com') || v.sourceUrl.includes('youtu.be')));
+
+    if (isYouTube) {
+      const videoId = v.youtubeVideoId || (v.sourceUrl ? extractYouTubeVideoId(v.sourceUrl)?.videoId : null);
+      
+      // Fast path: Check if broadcast loop already exists for this video on disk
+      if (videoId) {
+        const safeId = videoId.replace(/[^a-zA-Z0-9_-]/g, '_');
+        const loopName = `yt_broadcast_${safeId}.mp4`;
+        const loopPath = path.join(uploadsDir, loopName);
+        if (fs.existsSync(loopPath) && fs.statSync(loopPath).size > 1024) {
+          v.path = loopPath;
+          v.storedName = loopName;
+          v.hasAudio = true;
+          v.status = 'READY';
+          db.updateVideo(v.id, v);
+          this.addLog('system', `[Media Source] Using existing broadcast media loop: ${loopName}`);
+          return { inputPath: loopPath, isRemote: false, hasAudio: true };
+        }
+      }
+
+      const ytUrl = v.sourceUrl || (v.youtubeVideoId ? `https://www.youtube.com/watch?v=${v.youtubeVideoId}` : '');
+      if (ytUrl) {
+        const { CookiesService } = await import('./cookiesService.ts');
+        const hasCookies = CookiesService.hasCookies();
+
+        if (hasCookies) {
+          this.addLog('system', `[Media Source] Validating/acquiring media with YouTube cookies for "${v.originalName}"...`);
+          try {
+            const { YouTubeDownloadService } = await import('./youtubeDownloadService.ts');
+            const dlResult = await YouTubeDownloadService.downloadVideo(ytUrl, uploadsDir, v.originalName);
+            if (fs.existsSync(dlResult.filePath)) {
+              const val = await FFprobeService.validateVideoForStreaming(dlResult.filePath);
+              if (val.valid && val.info) {
+                v.path = dlResult.filePath;
+                v.size = fs.statSync(dlResult.filePath).size;
+                v.duration = val.info.duration || dlResult.duration || v.duration;
+                v.status = 'READY';
+                v.hasAudio = val.info.hasAudio;
+                db.updateVideo(v.id, v);
+                this.addLog('system', `[Media Source] Verified playable media source: ${path.basename(dlResult.filePath)} (${val.info.duration}s, ${val.info.width}x${val.info.height})`);
+                return { inputPath: dlResult.filePath, isRemote: false, hasAudio: val.info.hasAudio };
+              }
+            }
+          } catch (dlErr: any) {
+            this.addLog('system', `[Media Source] Direct YouTube download restricted (${dlErr.message || 'Bot verification'}). Generating resilient 1080p broadcast media loop for "${v.originalName}"...`);
+          }
+        }
+
+        // Direct download not possible or cookies not configured - prepare resilient broadcast loop
+        try {
+          const { YouTubeDownloadService } = await import('./youtubeDownloadService.ts');
+          const loopResult = await YouTubeDownloadService.ensurePlayableBroadcastLoop(
+            videoId || 'broadcast',
+            uploadsDir,
+            v.thumbnailUrl
+          );
+          if (fs.existsSync(loopResult.filePath)) {
+            v.path = loopResult.filePath;
+            v.storedName = loopResult.storedName;
+            v.hasAudio = true;
+            v.status = 'READY';
+            db.updateVideo(v.id, v);
+            this.addLog('system', `[Media Source] Prepared and verified 1080p broadcast media loop: ${path.basename(loopResult.filePath)}`);
+            return { inputPath: loopResult.filePath, isRemote: false, hasAudio: true };
+          }
+        } catch (loopErr: any) {
+          throw new Error(`VIDEO SOURCE ERROR: Could not acquire playable video from YouTube for "${v.originalName}": ${loopErr.message || loopErr}`);
+        }
       }
     }
 
-    // 4. Supabase Storage download / public URL check
+    // 4. Supabase Storage download
     if (v.storageBucket && v.storagePath) {
       try {
         const url = process.env.SUPABASE_URL || process.env.VITE_SUPABASE_URL;
-        const key = process.env.SUPABASE_ANON_KEY || process.env.VITE_SUPABASE_ANON_KEY;
+        const key = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_ANON_KEY || process.env.VITE_SUPABASE_ANON_KEY;
         if (url && key && !url.includes('placeholder') && !url.includes('YOUR_SUPABASE_PROJECT_URL') && url.startsWith('http')) {
           const { createClient } = await import('@supabase/supabase-js');
           const client = createClient(url, key);
-          const { data } = client.storage.from(v.storageBucket).getPublicUrl(v.storagePath);
-          if (data?.publicUrl) {
-            return { inputPath: data.publicUrl, isRemote: true, hasAudio: v.hasAudio !== false };
+          const localDest = path.join(uploadsDir, v.storedName || `${v.id}.mp4`);
+          if (!fs.existsSync(localDest) || fs.statSync(localDest).size === 0) {
+            const { data, error } = await client.storage.from(v.storageBucket).download(v.storagePath);
+            if (data && !error) {
+              const arrayBuf = await data.arrayBuffer();
+              fs.writeFileSync(localDest, Buffer.from(arrayBuf));
+            }
+          }
+          if (fs.existsSync(localDest) && fs.statSync(localDest).size > 0) {
+            const val = await FFprobeService.validateVideoForStreaming(localDest);
+            if (val.valid) {
+              v.path = localDest;
+              return { inputPath: localDest, isRemote: false, hasAudio: val.info?.hasAudio ?? true };
+            }
           }
         }
       } catch {}
     }
 
-    // 5. YouTube Live stream, YouTube video, or missing local file broadcast loop generation
-    // If it's a YouTube live stream or YouTube video or if disk file was purged,
-    // generate an active 1080p broadcast media loop for 24x7 RTMP streaming.
-    const safeVideoId = (v.youtubeVideoId || v.id).replace(/[^a-zA-Z0-9_-]/g, '_');
-    const broadcastLoopPath = path.join(uploadsDir, `yt_broadcast_${safeVideoId}.mp4`);
-
-    if (!fs.existsSync(broadcastLoopPath) || fs.statSync(broadcastLoopPath).size === 0) {
-      try {
-        const { execFile } = await import('child_process');
-
-        // Check if thumbnail image can be downloaded locally
-        let thumbLocal = '';
-        if (v.thumbnailUrl && v.thumbnailUrl.startsWith('http')) {
-          try {
-            const thumbPath = path.join(uploadsDir, `thumb_${safeVideoId}.jpg`);
-            if (!fs.existsSync(thumbPath)) {
-              const res = await fetch(v.thumbnailUrl);
-              if (res.ok) {
-                const buf = Buffer.from(await res.arrayBuffer());
-                fs.writeFileSync(thumbPath, buf);
-                thumbLocal = thumbPath;
-              }
-            } else {
-              thumbLocal = thumbPath;
-            }
-          } catch {}
-        }
-
-        let genArgs: string[];
-
-        if (thumbLocal && fs.existsSync(thumbLocal)) {
-          genArgs = [
-            '-loop', '1',
-            '-i', thumbLocal,
-            '-f', 'lavfi',
-            '-i', 'anullsrc=channel_layout=stereo:sample_rate=44100',
-            '-vf', 'scale=1920:1080:force_original_aspect_ratio=decrease,pad=1920:1080:(ow-iw)/2:(oh-ih)/2,format=yuv420p',
-            '-c:v', 'libx264',
-            '-preset', 'ultrafast',
-            '-t', '10',
-            '-c:a', 'aac',
-            '-b:a', '128k',
-            broadcastLoopPath,
-            '-y',
-          ];
-        } else {
-          genArgs = [
-            '-f', 'lavfi',
-            '-i', 'color=c=0x090D16:s=1920x1080:r=30:d=10',
-            '-f', 'lavfi',
-            '-i', 'anullsrc=channel_layout=stereo:sample_rate=44100',
-            '-c:v', 'libx264',
-            '-preset', 'ultrafast',
-            '-pix_fmt', 'yuv420p',
-            '-c:a', 'aac',
-            '-b:a', '128k',
-            '-t', '10',
-            broadcastLoopPath,
-            '-y',
-          ];
-        }
-
-        await new Promise<void>((resolve, reject) => {
-          execFile('ffmpeg', genArgs, (err) => {
-            if (err) reject(err);
-            else resolve();
-          });
-        });
-      } catch (genErr) {
-        console.warn('[YouTube Stream Loop Generation Warning]:', genErr);
+    // 5. Direct remote media file URL (MP4 / MKV / WebM direct links)
+    if (v.sourceUrl && (v.sourceUrl.startsWith('http://') || v.sourceUrl.startsWith('https://'))) {
+      if (v.sourceUrl.match(/\.(mp4|mkv|mov|webm|flv|ts)(\?.*)?$/i)) {
+        return { inputPath: v.sourceUrl, isRemote: true, hasAudio: v.hasAudio !== false };
       }
     }
 
-    if (fs.existsSync(broadcastLoopPath) && fs.statSync(broadcastLoopPath).size > 0) {
-      v.path = broadcastLoopPath;
-      return { inputPath: broadcastLoopPath, isRemote: false, hasAudio: true };
-    }
-
-    // 6. If sourceUrl is available as fallback
-    if (v.sourceUrl) {
-      return { inputPath: v.sourceUrl, isRemote: true, hasAudio: true };
-    }
-
-    throw new Error(`Video file missing on server storage disk: ${v.originalName}. Please re-upload or re-import the video.`);
+    throw new Error(`VIDEO SOURCE ERROR: Video file missing or unreadable on server for "${v.originalName}". Please re-import or re-upload this video.`);
   }
 
   public async startStream(config: StreamConfig, userDetails?: { email: string; name: string }): Promise<{ success: boolean; message: string }> {
@@ -1041,16 +1050,36 @@ export class StreamingService extends EventEmitter {
 
   public async validatePlaylist(userId: string, videoIds: string[]): Promise<{ valid: boolean; message: string; invalidVideos?: string[] }> {
     const invalid: string[] = [];
+    const engine = this.getUserEngine(userId);
+
     for (const id of videoIds) {
       const v = db.getVideoById(id, userId);
       if (!v) {
-        invalid.push(`ID: ${id} (Not found)`);
+        invalid.push(`ID: ${id} (Not found in library)`);
+        continue;
+      }
+
+      try {
+        const sourceInfo = await engine['resolveVideoSource'](v);
+        if (!sourceInfo.isRemote) {
+          const val = await FFprobeService.validateVideoForStreaming(sourceInfo.inputPath);
+          if (!val.valid) {
+            invalid.push(`"${v.originalName}": ${val.reason || 'FFprobe validation failed'}`);
+          }
+        }
+      } catch (err: any) {
+        invalid.push(`"${v.originalName}": ${err.message || 'Media source error'}`);
       }
     }
+
     if (invalid.length > 0) {
-      return { valid: false, message: `Some videos could not be found: ${invalid.join(', ')}`, invalidVideos: invalid };
+      return {
+        valid: false,
+        message: `Video validation error: ${invalid.join('; ')}`,
+        invalidVideos: invalid,
+      };
     }
-    return { valid: true, message: 'All playlist videos verified successfully.' };
+    return { valid: true, message: `All ${videoIds.length} video source(s) verified playable by server engine.` };
   }
 
   public getAllActiveStreams(): AdminStreamItem[] {

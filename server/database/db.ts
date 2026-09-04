@@ -1,4 +1,6 @@
 import { createClient, SupabaseClient } from '@supabase/supabase-js';
+import fs from 'fs';
+import path from 'path';
 import {
   User,
   VideoMetadata,
@@ -7,6 +9,10 @@ import {
   SystemSettings,
   Playlist,
 } from '../../src/types/index.ts';
+
+const DATA_DIR = path.resolve(process.cwd(), 'data');
+const DB_FILE = path.join(DATA_DIR, 'database.json');
+const UPLOADS_DIR = path.resolve(process.cwd(), 'uploads');
 
 const DEFAULT_SETTINGS: SystemSettings = {
   maxConcurrentStreams: Number(process.env.MAX_CONCURRENT_STREAMS) || 10,
@@ -37,20 +43,134 @@ class SupabaseDatabase {
   private memoryConfigs: Record<string, StreamConfig> = {};
   private memorySessions: StreamSession[] = [];
   private settings: SystemSettings = DEFAULT_SETTINGS;
+  private isSaving = false;
 
   constructor() {
+    this.ensureDirs();
+    this.loadFromDisk();
     this.initSupabase();
-    // Prepopulate default admin user
-    this.memoryUsers.push({
-      id: 'usr_admin_default',
-      googleId: 'sb_admin_default',
-      email: 'titangaming4m@gmail.com',
-      name: 'LIGHT GAMING 4M',
-      role: 'ADMIN',
-      status: 'ACTIVE',
-      createdAt: new Date().toISOString(),
-      lastLogin: new Date().toISOString(),
-    });
+    this.ensureDefaultAdmin();
+    this.scanAndIndexLocalVideos();
+  }
+
+  private ensureDirs() {
+    if (!fs.existsSync(DATA_DIR)) fs.mkdirSync(DATA_DIR, { recursive: true });
+    if (!fs.existsSync(UPLOADS_DIR)) fs.mkdirSync(UPLOADS_DIR, { recursive: true });
+  }
+
+  private loadFromDisk() {
+    try {
+      if (fs.existsSync(DB_FILE)) {
+        const raw = fs.readFileSync(DB_FILE, 'utf-8');
+        const data = JSON.parse(raw);
+        if (Array.isArray(data.users)) this.memoryUsers = data.users;
+        if (Array.isArray(data.videos)) this.memoryVideos = data.videos;
+        if (Array.isArray(data.playlists)) this.memoryPlaylists = data.playlists;
+        if (data.configs && typeof data.configs === 'object') this.memoryConfigs = data.configs;
+        if (Array.isArray(data.sessions)) this.memorySessions = data.sessions;
+        if (data.settings && typeof data.settings === 'object') {
+          this.settings = { ...DEFAULT_SETTINGS, ...data.settings };
+        }
+        console.log(`[Database] Loaded persistent data: ${this.memoryUsers.length} users, ${this.memoryVideos.length} videos, ${this.memoryPlaylists.length} playlists.`);
+      }
+    } catch (err) {
+      console.warn('[Database] Warning loading database from disk:', err);
+    }
+  }
+
+  private saveToDisk() {
+    if (this.isSaving) return;
+    this.isSaving = true;
+    try {
+      this.ensureDirs();
+      const payload = {
+        users: this.memoryUsers,
+        videos: this.memoryVideos,
+        playlists: this.memoryPlaylists,
+        configs: this.memoryConfigs,
+        sessions: this.memorySessions,
+        settings: this.settings,
+        lastUpdated: new Date().toISOString(),
+      };
+      const tmpFile = `${DB_FILE}.tmp`;
+      fs.writeFileSync(tmpFile, JSON.stringify(payload, null, 2), 'utf-8');
+      fs.renameSync(tmpFile, DB_FILE);
+    } catch (err) {
+      console.warn('[Database] Warning saving database to disk:', err);
+    } finally {
+      this.isSaving = false;
+    }
+  }
+
+  private ensureDefaultAdmin() {
+    const adminEmail = 'titangaming4m@gmail.com';
+    let admin = this.memoryUsers.find(u => u.email.toLowerCase() === adminEmail || u.id === 'usr_admin_default');
+    if (!admin) {
+      admin = {
+        id: 'usr_admin_default',
+        googleId: 'sb_admin_default',
+        email: adminEmail,
+        name: 'LIGHT GAMING 4M',
+        role: 'ADMIN',
+        status: 'ACTIVE',
+        createdAt: new Date().toISOString(),
+        lastLogin: new Date().toISOString(),
+      };
+      this.memoryUsers.unshift(admin);
+      this.saveToDisk();
+    } else {
+      admin.role = 'ADMIN';
+      admin.status = 'ACTIVE';
+    }
+  }
+
+  private scanAndIndexLocalVideos() {
+    try {
+      if (!fs.existsSync(UPLOADS_DIR)) return;
+      const files = fs.readdirSync(UPLOADS_DIR);
+      const defaultUser = this.memoryUsers[0]?.id || 'usr_admin_default';
+
+      for (const file of files) {
+        if (file.startsWith('.') || file.endsWith('.json') || file === 'temp_chunks' || file === 'thumbnails') continue;
+        const fullPath = path.join(UPLOADS_DIR, file);
+        try {
+          const stat = fs.statSync(fullPath);
+          if (!stat.isFile() || stat.size === 0) continue;
+
+          const exists = this.memoryVideos.some(v => v.storedName === file || v.path === fullPath);
+          if (!exists) {
+            const ext = path.extname(file).toLowerCase();
+            const allowed = ['.mp4', '.mkv', '.mov', '.avi', '.flv', '.webm', '.ts'];
+            if (allowed.includes(ext)) {
+              const cleanName = file.replace(/^(vid_[0-9]+_[a-f0-9]+_|yt_broadcast_)/i, '').replace(/_/g, ' ');
+              const newVid: VideoMetadata = {
+                id: `vid_${Date.now()}_${Math.random().toString(36).substr(2, 6)}`,
+                userId: defaultUser,
+                originalName: cleanName.length > 3 ? cleanName : file,
+                storedName: file,
+                path: fullPath,
+                size: stat.size,
+                mimeType: 'video/mp4',
+                duration: 60,
+                width: 1920,
+                height: 1080,
+                fps: 30,
+                bitrate: 4500000,
+                videoCodec: 'h264',
+                audioCodec: 'aac',
+                hasAudio: true,
+                storageProvider: 'local',
+                createdAt: stat.birthtime ? stat.birthtime.toISOString() : new Date().toISOString(),
+              };
+              this.memoryVideos.push(newVid);
+            }
+          }
+        } catch {}
+      }
+      this.saveToDisk();
+    } catch (err) {
+      console.warn('[Database] Local video scan note:', err);
+    }
   }
 
   public initSupabase() {
@@ -96,12 +216,14 @@ class SupabaseDatabase {
     const cleanEmail = profile.email.trim().toLowerCase();
     const shouldBeAdmin = this.isEmailAdmin(cleanEmail) || (profile.name && profile.name.toUpperCase().includes('LIGHT GAMING 4M'));
 
-    let existing = this.memoryUsers.find(u => u.googleId === profile.googleId || u.email.toLowerCase() === cleanEmail);
+    let existing = this.memoryUsers.find(u => (u.googleId && u.googleId === profile.googleId) || u.email.toLowerCase() === cleanEmail);
     if (existing) {
+      existing.googleId = profile.googleId || existing.googleId;
       existing.name = profile.name || existing.name;
       existing.avatar = profile.avatar || existing.avatar;
       existing.lastLogin = new Date().toISOString();
-      existing.role = shouldBeAdmin ? 'ADMIN' : 'USER';
+      if (shouldBeAdmin) existing.role = 'ADMIN';
+      this.saveToDisk();
       return { user: existing, isNew: false };
     }
 
@@ -119,6 +241,7 @@ class SupabaseDatabase {
     };
 
     this.memoryUsers.push(newUser);
+    this.saveToDisk();
     return { user: newUser, isNew: true };
   }
 
@@ -129,6 +252,7 @@ class SupabaseDatabase {
     } else {
       Object.assign(existing, user);
     }
+    this.saveToDisk();
     return user;
   }
 
@@ -153,6 +277,7 @@ class SupabaseDatabase {
     const user = this.findUserById(userId);
     if (user) {
       user.role = role;
+      this.saveToDisk();
       return user;
     }
     return null;
@@ -162,6 +287,7 @@ class SupabaseDatabase {
     const user = this.findUserById(userId);
     if (user) {
       user.status = status;
+      this.saveToDisk();
       return user;
     }
     return null;
@@ -174,6 +300,7 @@ class SupabaseDatabase {
       this.memoryVideos = this.memoryVideos.filter(v => v.userId !== userId);
       this.memoryPlaylists = this.memoryPlaylists.filter(p => p.userId !== userId);
       delete this.memoryConfigs[userId];
+      this.saveToDisk();
       return true;
     }
     return false;
@@ -183,17 +310,30 @@ class SupabaseDatabase {
   public getVideos(userId?: string): VideoMetadata[] {
     let list = [...this.memoryVideos];
     if (userId) {
-      list = list.filter(v => !v.userId || v.userId === userId);
+      const user = this.findUserById(userId);
+      const isAdmin = user ? this.isUserAdmin(user) : false;
+      // Admins can see all videos or their own; regular users see their videos
+      if (!isAdmin) {
+        list = list.filter(v => !v.userId || v.userId === userId);
+      }
     }
     return list.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
   }
 
   public getVideoById(id: string, userId?: string): VideoMetadata | undefined {
-    return this.memoryVideos.find(v => v.id === id && (!userId || !v.userId || v.userId === userId));
+    const user = userId ? this.findUserById(userId) : undefined;
+    const isAdmin = user ? this.isUserAdmin(user) : false;
+    return this.memoryVideos.find(v => v.id === id && (isAdmin || !userId || !v.userId || v.userId === userId));
   }
 
   public addVideo(video: VideoMetadata): VideoMetadata {
-    this.memoryVideos.push(video);
+    const existingIndex = this.memoryVideos.findIndex(v => v.id === video.id);
+    if (existingIndex !== -1) {
+      this.memoryVideos[existingIndex] = video;
+    } else {
+      this.memoryVideos.push(video);
+    }
+    this.saveToDisk();
     return video;
   }
 
@@ -201,6 +341,7 @@ class SupabaseDatabase {
     const video = this.getVideoById(id, userId);
     if (video) {
       Object.assign(video, updates);
+      this.saveToDisk();
       return video;
     }
     return null;
@@ -210,6 +351,7 @@ class SupabaseDatabase {
     const video = this.getVideoById(id, userId);
     if (video) {
       video.originalName = newName;
+      this.saveToDisk();
       return video;
     }
     return null;
@@ -219,6 +361,7 @@ class SupabaseDatabase {
     const index = this.memoryVideos.findIndex(v => v.id === id && (!userId || !v.userId || v.userId === userId));
     if (index !== -1) {
       this.memoryVideos.splice(index, 1);
+      this.saveToDisk();
       return true;
     }
     return false;
@@ -244,6 +387,7 @@ class SupabaseDatabase {
     } else {
       this.memoryPlaylists.push(playlist);
     }
+    this.saveToDisk();
     return playlist;
   }
 
@@ -261,6 +405,7 @@ class SupabaseDatabase {
       updatedAt: new Date().toISOString(),
     };
     this.memoryPlaylists.push(newPlaylist);
+    this.saveToDisk();
     return newPlaylist;
   }
 
@@ -269,6 +414,7 @@ class SupabaseDatabase {
       const pl = this.getPlaylistById(idOrPlaylist.id);
       if (pl) {
         Object.assign(pl, idOrPlaylist, { updatedAt: new Date().toISOString() });
+        this.saveToDisk();
         return pl;
       }
       return null;
@@ -281,6 +427,7 @@ class SupabaseDatabase {
     const pl = this.getPlaylistById(id, userId);
     if (pl) {
       Object.assign(pl, updates, { updatedAt: new Date().toISOString() });
+      this.saveToDisk();
       return pl;
     }
     return null;
@@ -290,6 +437,7 @@ class SupabaseDatabase {
     const index = this.memoryPlaylists.findIndex(p => p.id === id && (!userId || !p.userId || p.userId === userId));
     if (index !== -1) {
       this.memoryPlaylists.splice(index, 1);
+      this.saveToDisk();
       return true;
     }
     return false;
@@ -322,6 +470,7 @@ class SupabaseDatabase {
     const current = this.getStreamConfig(userId);
     const updated = { ...current, ...config, userId };
     this.memoryConfigs[userId] = updated;
+    this.saveToDisk();
     return updated;
   }
 
@@ -340,6 +489,7 @@ class SupabaseDatabase {
 
   public addSession(session: StreamSession): StreamSession {
     this.memorySessions.push(session);
+    this.saveToDisk();
     return session;
   }
 
@@ -347,6 +497,7 @@ class SupabaseDatabase {
     const session = this.memorySessions.find(s => s.id === id);
     if (session) {
       Object.assign(session, updates);
+      this.saveToDisk();
       return session;
     }
     return null;
@@ -358,6 +509,7 @@ class SupabaseDatabase {
     } else {
       this.memorySessions = [];
     }
+    this.saveToDisk();
   }
 
   // Settings
@@ -367,6 +519,7 @@ class SupabaseDatabase {
 
   public updateSettings(updates: Partial<SystemSettings>): SystemSettings {
     this.settings = { ...this.settings, ...updates };
+    this.saveToDisk();
     return { ...this.settings };
   }
 }

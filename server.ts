@@ -1,4 +1,5 @@
 import express from 'express';
+import http from 'http';
 import path from 'path';
 import fs from 'fs';
 import cors from 'cors';
@@ -21,6 +22,7 @@ import supabaseConfigRoutes from './server/routes/supabaseConfig.ts';
 async function startServer() {
   const app = express();
   const PORT = 3000;
+  const httpServer = http.createServer(app);
 
   // Middleware
   app.use(cors({
@@ -63,7 +65,10 @@ async function startServer() {
   // Vite middleware in dev or static files in production
   if (process.env.NODE_ENV !== 'production') {
     const vite = await createViteServer({
-      server: { middlewareMode: true },
+      server: {
+        middlewareMode: true,
+        hmr: { server: httpServer },
+      },
       appType: 'spa',
     });
     app.use(vite.middlewares);
@@ -83,7 +88,7 @@ async function startServer() {
     });
   });
 
-  app.listen(PORT, '0.0.0.0', () => {
+  httpServer.listen(PORT, '0.0.0.0', () => {
     console.log(`====================================================`);
     console.log(`🚀 StreamLoop 24x7 Multi-User RTMP Engine is running!`);
     console.log(`📡 URL: http://0.0.0.0:${PORT}`);

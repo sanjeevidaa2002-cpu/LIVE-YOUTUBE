@@ -86,26 +86,35 @@ export const StartStreamPage: React.FC<StartStreamPageProps> = ({
   const [showVideoPicker, setShowVideoPicker] = useState<boolean>(false);
 
   useEffect(() => {
-    // Load videos
-    apiFetch<{ videos: VideoMetadata[] }>('/api/videos')
-      .then((res) => {
-        const loadedVideos = res.videos || [];
-        setVideos(loadedVideos);
+    const loadVideos = () => {
+      apiFetch<{ videos: VideoMetadata[] }>('/api/videos')
+        .then((res) => {
+          const loadedVideos = res.videos || [];
+          setVideos(loadedVideos);
 
-        if (selectedPlaylist && selectedPlaylist.length > 0) {
-          setPlaylistItems(selectedPlaylist);
-          setStreamMode('playlist');
-        } else if (selectedVideo) {
-          setSelectedVideoId(selectedVideo.id);
-          setPlaylistItems([selectedVideo]);
-          setStreamMode('single');
-        } else if (loadedVideos.length > 0) {
-          setSelectedVideoId(loadedVideos[0].id);
-          setPlaylistItems([loadedVideos[0]]);
-        }
-      })
-      .catch(console.error);
+          if (selectedPlaylist && selectedPlaylist.length > 0) {
+            setPlaylistItems(selectedPlaylist);
+            setStreamMode('playlist');
+          } else if (selectedVideo) {
+            setSelectedVideoId(selectedVideo.id);
+            setPlaylistItems([selectedVideo]);
+            setStreamMode('single');
+          } else if (loadedVideos.length > 0) {
+            setSelectedVideoId((prev) => prev || loadedVideos[0].id);
+            setPlaylistItems((prev) => (prev.length > 0 ? prev : [loadedVideos[0]]));
+          }
+        })
+        .catch(console.error);
+    };
 
+    loadVideos();
+    window.addEventListener('streamloop:videos-updated', loadVideos);
+    return () => {
+      window.removeEventListener('streamloop:videos-updated', loadVideos);
+    };
+  }, [selectedVideo, selectedPlaylist]);
+
+  useEffect(() => {
     // Load default settings
     apiFetch<{ settings: any }>('/api/settings')
       .then((res) => {
@@ -119,7 +128,7 @@ export const StartStreamPage: React.FC<StartStreamPageProps> = ({
         }
       })
       .catch(console.error);
-  }, [selectedVideo, selectedPlaylist]);
+  }, []);
 
   const currentSelectedVideo = videos.find((v) => v.id === selectedVideoId) || videos[0] || null;
 

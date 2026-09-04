@@ -279,15 +279,15 @@ export const ActiveStreamPage: React.FC<ActiveStreamPageProps> = ({ onNavigate }
         )}
 
         {/* Single Video Progress Bar (when not a playlist) */}
-        {isLive && !hasPlaylist && streamState?.video && (
+        {isLive && !hasPlaylist && (streamState?.video || streamState?.currentVideo) && (
           <div className="mt-6 pt-6 border-t border-slate-800/80 space-y-2">
             <div className="flex items-center justify-between text-xs">
               <span className="flex items-center gap-2 text-slate-300 font-medium">
                 <Repeat className="h-3.5 w-3.5 text-indigo-400" />
-                Current Loop Progress (Iteration #{streamState.currentLoop})
+                Current Loop Progress (Iteration #{streamState.currentLoop || 1})
               </span>
               <span className="font-mono text-slate-400">
-                {streamState.loopProgressPercent}% of {Math.round(streamState.video.duration)}s video
+                {streamState.loopProgressPercent}% of {Math.round(streamState.video?.duration || streamState.currentVideo?.duration || 0)}s video
               </span>
             </div>
             <div className="h-2.5 w-full bg-slate-950 rounded-full overflow-hidden border border-slate-800">
@@ -305,28 +305,30 @@ export const ActiveStreamPage: React.FC<ActiveStreamPageProps> = ({ onNavigate }
         <div className="rounded-2xl border border-slate-800 bg-[#0d121f] p-4 text-center">
           <span className="text-[10px] uppercase font-semibold text-slate-400">Real-Time FPS</span>
           <p className="mt-1 font-mono text-xl font-bold text-emerald-400">
-            {isLive ? streamState?.realtimeStats.fps : '0.0'}
+            {isLive ? streamState?.realtimeStats?.fps ?? '0.0' : '0.0'}
           </p>
         </div>
 
         <div className="rounded-2xl border border-slate-800 bg-[#0d121f] p-4 text-center">
           <span className="text-[10px] uppercase font-semibold text-slate-400">Live Bitrate</span>
           <p className="mt-1 font-mono text-xl font-bold text-indigo-400">
-            {isLive ? streamState?.realtimeStats.bitrate : '0 kbps'}
+            {isLive ? streamState?.realtimeStats?.bitrate || '0 kbps' : '0 kbps'}
           </p>
         </div>
 
         <div className="rounded-2xl border border-slate-800 bg-[#0d121f] p-4 text-center">
           <span className="text-[10px] uppercase font-semibold text-slate-400">Frames Rendered</span>
           <p className="mt-1 font-mono text-xl font-bold text-white">
-            {isLive ? streamState?.realtimeStats.frame.toLocaleString() : '0'}
+            {isLive && streamState?.realtimeStats?.frame != null
+              ? streamState.realtimeStats.frame.toLocaleString()
+              : '0'}
           </p>
         </div>
 
         <div className="rounded-2xl border border-slate-800 bg-[#0d121f] p-4 text-center">
           <span className="text-[10px] uppercase font-semibold text-slate-400">Encoding Speed</span>
           <p className="mt-1 font-mono text-xl font-bold text-amber-400">
-            {isLive ? streamState?.realtimeStats.speed : '0x'}
+            {isLive ? streamState?.realtimeStats?.speed || '0x' : '0x'}
           </p>
         </div>
 

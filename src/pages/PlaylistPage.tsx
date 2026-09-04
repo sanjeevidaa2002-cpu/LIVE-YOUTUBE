@@ -75,6 +75,13 @@ export const PlaylistPage: React.FC<PlaylistPageProps> = ({
 
   useEffect(() => {
     fetchVideos();
+    const handleVideosUpdated = () => {
+      fetchVideos();
+    };
+    window.addEventListener('streamloop:videos-updated', handleVideosUpdated);
+    return () => {
+      window.removeEventListener('streamloop:videos-updated', handleVideosUpdated);
+    };
   }, []);
 
   useEffect(() => {

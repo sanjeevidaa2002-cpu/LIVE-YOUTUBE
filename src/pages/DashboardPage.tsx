@@ -225,7 +225,7 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({
           <div className="mt-4 pt-3 border-t border-slate-800/80 flex items-center justify-between text-[11px] text-slate-400">
             <span>Speed</span>
             <span className="font-semibold text-slate-300 font-mono">
-              {streamState?.realtimeStats.speed || '1.0x'}
+              {streamState?.realtimeStats?.speed || '1.0x'}
             </span>
           </div>
         </div>
@@ -274,31 +274,33 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({
               <div className="text-center">
                 <p className="text-[11px] uppercase text-slate-400">Live FPS</p>
                 <p className="text-base font-mono font-bold text-emerald-400">
-                  {streamState?.realtimeStats.fps || 30.0}
+                  {streamState?.realtimeStats?.fps ?? 30.0}
                 </p>
               </div>
               <div className="text-center">
                 <p className="text-[11px] uppercase text-slate-400">Bitrate</p>
                 <p className="text-base font-mono font-bold text-indigo-300">
-                  {streamState?.realtimeStats.bitrate || '4000kbits/s'}
+                  {streamState?.realtimeStats?.bitrate || '4000kbits/s'}
                 </p>
               </div>
               <div className="text-center">
                 <p className="text-[11px] uppercase text-slate-400">Frames</p>
                 <p className="text-base font-mono font-bold text-white">
-                  {streamState?.realtimeStats.frame.toLocaleString() || '0'}
+                  {streamState?.realtimeStats?.frame != null
+                    ? streamState.realtimeStats.frame.toLocaleString()
+                    : '0'}
                 </p>
               </div>
               <div className="text-center">
                 <p className="text-[11px] uppercase text-slate-400">Stream Size</p>
                 <p className="text-base font-mono font-bold text-violet-300">
-                  {streamState?.realtimeStats.size || '0kB'}
+                  {streamState?.realtimeStats?.size || '0kB'}
                 </p>
               </div>
               <div className="text-center">
                 <p className="text-[11px] uppercase text-slate-400">Speed</p>
                 <p className="text-base font-mono font-bold text-amber-300">
-                  {streamState?.realtimeStats.speed || '1.00x'}
+                  {streamState?.realtimeStats?.speed || '1.00x'}
                 </p>
               </div>
             </div>

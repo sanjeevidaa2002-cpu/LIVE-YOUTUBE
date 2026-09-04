@@ -22,7 +22,8 @@ import {
   HelpCircle,
   ExternalLink,
   ChevronRight,
-  Sparkles
+  Sparkles,
+  Youtube,
 } from 'lucide-react';
 import { SystemSettings, StorageStatusInfo, StreamStatus } from '../types/index.ts';
 import { apiFetch } from '../lib/api.ts';
@@ -106,6 +107,98 @@ export const SettingsPage: React.FC = () => {
   const [passwordStatus, setPasswordStatus] = useState<{ success: boolean; message: string } | null>(null);
   const [isChangingPassword, setIsChangingPassword] = useState<boolean>(false);
 
+  // YouTube Cookies & Bot Protection State
+  const [cookiesInfo, setCookiesInfo] = useState<{
+    configured: boolean;
+    cookieCount: number;
+    fileSize: number;
+    updatedAt?: string;
+  }>({
+    configured: false,
+    cookieCount: 0,
+    fileSize: 0,
+  });
+  const [cookiesInput, setCookiesInput] = useState<string>('');
+  const [isSavingCookies, setIsSavingCookies] = useState<boolean>(false);
+  const [isTestingCookies, setIsTestingCookies] = useState<boolean>(false);
+  const [isClearingCookies, setIsClearingCookies] = useState<boolean>(false);
+  const [cookiesAlert, setCookiesAlert] = useState<{
+    type: 'success' | 'error' | 'info';
+    message: string;
+  } | null>(null);
+
+  const loadCookiesStatus = async () => {
+    try {
+      const res = await apiFetch<{ cookies: { configured: boolean; cookieCount: number; fileSize: number; updatedAt?: string } }>('/api/settings/cookies');
+      if (res.cookies) {
+        setCookiesInfo(res.cookies);
+      }
+    } catch (err: any) {
+      console.warn('Could not fetch cookies status:', err);
+    }
+  };
+
+  const handleSaveCookies = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!cookiesInput.trim()) {
+      setCookiesAlert({ type: 'error', message: 'Please paste your cookies.txt or JSON cookie data.' });
+      return;
+    }
+
+    setIsSavingCookies(true);
+    setCookiesAlert(null);
+    try {
+      const res = await apiFetch<{ success: boolean; message: string; cookies: any }>('/api/settings/cookies', {
+        method: 'POST',
+        body: JSON.stringify({ cookiesContent: cookiesInput }),
+      });
+      setCookiesAlert({ type: 'success', message: res.message || 'YouTube cookies saved and verified!' });
+      if (res.cookies) {
+        setCookiesInfo(res.cookies);
+      }
+      setCookiesInput('');
+    } catch (err: any) {
+      setCookiesAlert({ type: 'error', message: err.message || 'Failed to save cookies' });
+    } finally {
+      setIsSavingCookies(false);
+    }
+  };
+
+  const handleTestCookies = async () => {
+    setIsTestingCookies(true);
+    setCookiesAlert(null);
+    try {
+      const res = await apiFetch<{ success: boolean; message: string }>('/api/settings/cookies/test', {
+        method: 'POST',
+      });
+      setCookiesAlert({ type: 'success', message: res.message || 'Cookies verified successfully against YouTube!' });
+      loadCookiesStatus();
+    } catch (err: any) {
+      setCookiesAlert({ type: 'error', message: err.message || 'YouTube rejected cookies' });
+    } finally {
+      setIsTestingCookies(false);
+    }
+  };
+
+  const handleClearCookies = async () => {
+    if (!window.confirm('Remove saved YouTube cookies? yt-dlp will fall back to anonymous and oEmbed access.')) return;
+    setIsClearingCookies(true);
+    setCookiesAlert(null);
+    try {
+      const res = await apiFetch<{ success: boolean; message: string; cookies: any }>('/api/settings/cookies', {
+        method: 'DELETE',
+      });
+      setCookiesAlert({ type: 'info', message: res.message || 'YouTube cookies removed.' });
+      if (res.cookies) {
+        setCookiesInfo(res.cookies);
+      }
+    } catch (err: any) {
+      setCookiesAlert({ type: 'error', message: err.message || 'Failed to delete cookies' });
+    } finally {
+      setIsClearingCookies(false);
+    }
+  };
+
   const loadStorageStatus = async () => {
     try {
       const res = await apiFetch<StorageStatusInfo>('/api/settings/storage');
@@ -145,6 +238,7 @@ export const SettingsPage: React.FC = () => {
       }),
       loadStorageStatus(),
       loadStreamStatus(),
+      loadCookiesStatus(),
     ])
       .catch((err) => setGeneralError(err.message || 'Failed to load settings'))
       .finally(() => setIsLoading(false));
@@ -870,7 +964,127 @@ export const SettingsPage: React.FC = () => {
       </form>
 
       {/* ========================================================================= */}
-      {/* 3. ADMIN PASSWORD CHANGE                                                */}
+      {/* 3. YOUTUBE AUTHENTICATION & BOT VERIFICATION                             */}
+      {/* ========================================================================= */}
+      <div className="rounded-2xl border border-slate-800 bg-[#0d121f] p-6 shadow-lg space-y-4">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-800/80 pb-3">
+          <div className="flex items-center gap-2.5">
+            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-red-600/20 text-red-400 border border-red-500/30 shrink-0">
+              <Youtube className="h-4 w-4" />
+            </div>
+            <div>
+              <h2 className="text-sm font-bold text-white flex items-center gap-2">
+                <span>YouTube Authentication & Bot Protection</span>
+                {cookiesInfo.configured ? (
+                  <span className="inline-flex items-center gap-1 rounded-full bg-emerald-500/10 px-2 py-0.5 text-[10px] font-semibold text-emerald-400 border border-emerald-500/20">
+                    <CheckCircle2 className="h-3 w-3" />
+                    Active ({cookiesInfo.cookieCount} cookies)
+                  </span>
+                ) : (
+                  <span className="inline-flex items-center gap-1 rounded-full bg-slate-800 px-2 py-0.5 text-[10px] font-medium text-slate-400 border border-slate-700">
+                    Optional / Not Configured
+                  </span>
+                )}
+              </h2>
+              <p className="text-xs text-slate-400">
+                Authenticate server requests to YouTube to prevent "Sign in to confirm you're not a bot" errors.
+              </p>
+            </div>
+          </div>
+
+          <div className="flex items-center gap-2">
+            {cookiesInfo.configured && (
+              <>
+                <button
+                  type="button"
+                  onClick={handleTestCookies}
+                  disabled={isTestingCookies}
+                  className="flex items-center gap-1.5 rounded-xl bg-slate-800 px-3 py-1.5 text-xs font-semibold text-white border border-slate-700 hover:bg-slate-700 transition-all disabled:opacity-50"
+                  title="Test cookies with YouTube"
+                >
+                  <RefreshCw className={`h-3 w-3 ${isTestingCookies ? 'animate-spin' : ''}`} />
+                  <span>Test Connection</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={handleClearCookies}
+                  disabled={isClearingCookies}
+                  className="flex items-center gap-1.5 rounded-xl bg-rose-950/40 px-3 py-1.5 text-xs font-semibold text-rose-300 border border-rose-800/60 hover:bg-rose-900/60 transition-all disabled:opacity-50"
+                  title="Remove saved cookies"
+                >
+                  <Trash2 className="h-3 w-3" />
+                  <span>Clear</span>
+                </button>
+              </>
+            )}
+          </div>
+        </div>
+
+        {cookiesAlert && (
+          <div
+            className={`flex items-center gap-2 rounded-xl p-3 text-xs border ${
+              cookiesAlert.type === 'success'
+                ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30'
+                : cookiesAlert.type === 'info'
+                ? 'bg-sky-500/10 text-sky-400 border-sky-500/30'
+                : 'bg-rose-500/10 text-rose-400 border-rose-500/30'
+            }`}
+          >
+            {cookiesAlert.type === 'success' ? (
+              <CheckCircle2 className="h-4 w-4 shrink-0" />
+            ) : cookiesAlert.type === 'info' ? (
+              <ShieldCheck className="h-4 w-4 shrink-0" />
+            ) : (
+              <AlertCircle className="h-4 w-4 shrink-0" />
+            )}
+            <span>{cookiesAlert.message}</span>
+          </div>
+        )}
+
+        <form onSubmit={handleSaveCookies} className="space-y-3">
+          <div className="space-y-1.5">
+            <div className="flex items-center justify-between">
+              <label className="text-xs font-medium text-slate-300 flex items-center gap-1.5">
+                <Key className="h-3.5 w-3.5 text-red-400" />
+                <span>Exported YouTube Cookies (Netscape format or JSON)</span>
+              </label>
+              {cookiesInfo.updatedAt && (
+                <span className="text-[11px] font-mono text-slate-400">
+                  Updated: {new Date(cookiesInfo.updatedAt).toLocaleTimeString()}
+                </span>
+              )}
+            </div>
+            <textarea
+              rows={4}
+              value={cookiesInput}
+              onChange={(e) => setCookiesInput(e.target.value)}
+              placeholder="# Netscape HTTP Cookie File (paste content from Get cookies.txt extension or Cookie-Editor JSON)&#10;.youtube.com&#9;TRUE&#9;/&#9;TRUE&#9;1799999999&#9;LOGIN_INFO&#9;..."
+              className="w-full rounded-xl bg-slate-950 px-3.5 py-2.5 text-xs text-slate-200 border border-slate-800 font-mono focus:border-red-500 focus:outline-none transition-colors placeholder:text-slate-600"
+            />
+          </div>
+
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pt-1">
+            <div className="text-[11px] text-slate-400 flex items-center gap-1.5">
+              <HelpCircle className="h-3.5 w-3.5 text-slate-400 shrink-0" />
+              <span>
+                Tip: Install <strong>Get cookies.txt LOCALLY</strong> or <strong>Cookie-Editor</strong> in your browser, open youtube.com, export cookies, and paste here.
+              </span>
+            </div>
+
+            <button
+              type="submit"
+              disabled={isSavingCookies || !cookiesInput.trim()}
+              className="flex items-center justify-center gap-2 rounded-xl bg-red-600 px-5 py-2 text-xs font-semibold text-white shadow-lg shadow-red-600/30 hover:bg-red-500 transition-all disabled:opacity-50 active:scale-95"
+            >
+              {isSavingCookies ? <RefreshCw className="h-3.5 w-3.5 animate-spin" /> : <Save className="h-3.5 w-3.5" />}
+              <span>Save & Apply Cookies</span>
+            </button>
+          </div>
+        </form>
+      </div>
+
+      {/* ========================================================================= */}
+      {/* 4. ADMIN PASSWORD CHANGE                                                */}
       {/* ========================================================================= */}
       <form onSubmit={handleChangePassword} className="rounded-2xl border border-slate-800 bg-[#0d121f] p-6 shadow-lg space-y-4">
         <div className="flex items-center gap-2.5 border-b border-slate-800/80 pb-3">

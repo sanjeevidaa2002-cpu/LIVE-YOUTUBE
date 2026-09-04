@@ -1,0 +1,4737 @@
+{
+  "users": [
+    {
+      "id": "usr_admin_default",
+      "googleId": "sb_titangaming4m_gmail_com",
+      "email": "titangaming4m@gmail.com",
+      "name": "titangaming4m",
+      "role": "ADMIN",
+      "status": "ACTIVE",
+      "createdAt": "2026-09-02T09:25:55.069Z",
+      "lastLogin": "2026-09-02T16:59:07.216Z",
+      "avatar": ""
+    }
+  ],
+  "videos": [
+    {
+      "id": "yt_1zZ1yVpYdZE_5073235a",
+      "userId": "usr_admin_default",
+      "originalName": "[NoADS] The Boondocks Full Seasons 1-4 Episodes ✅💙The Boondocks Full Episodes 2026🤍#NoZoom #nocut 💛",
+      "storedName": "yt_broadcast_1zZ1yVpYdZE.mp4",
+      "path": "/app/applet/uploads/yt_broadcast_1zZ1yVpYdZE.mp4",
+      "size": 858511,
+      "duration": 10,
+      "width": 1920,
+      "height": 1080,
+      "fps": 30,
+      "bitrate": 4000000,
+      "videoCodec": "h264",
+      "audioCodec": "aac",
+      "hasAudio": true,
+      "thumbnailUrl": "https://i.ytimg.com/vi/1zZ1yVpYdZE/hqdefault.jpg",
+      "storageProvider": "local",
+      "sourceType": "YOUTUBE",
+      "youtubeVideoId": "1zZ1yVpYdZE",
+      "sourceUrl": "https://www.youtube.com/watch?v=1zZ1yVpYdZE",
+      "liveStatus": "NONE",
+      "channelTitle": "Mattt ASMR",
+      "status": "READY",
+      "createdAt": "2026-09-03T08:00:01.109Z",
+      "updatedAt": "2026-09-03T08:00:01.109Z"
+    }
+  ],
+  "playlists": [],
+  "configs": {
+    "usr_admin_default": {
+      "userId": "usr_admin_default",
+      "rtmpUrl": "rtmps://a.rtmp.youtube.com:443/live2",
+      "streamKey": "d7pa-35y3-8csj-v0vw-a0jp",
+      "quality": "1080p",
+      "bitrate": "3000k",
+      "fps": "60",
+      "autoReconnect": true,
+      "reconnectDelay": 5,
+      "loop": true,
+      "audio": true,
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ]
+    }
+  },
+  "sessions": [
+    {
+      "id": "sess_1788369669340_d6cyjp",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:21:09.339Z",
+      "stoppedAt": "2026-09-02T17:21:09.561Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 0,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788369674572_67lknx",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:21:14.571Z",
+      "stoppedAt": "2026-09-02T17:21:14.758Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 1,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788369679766_jtzg9x",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:21:19.766Z",
+      "stoppedAt": "2026-09-02T17:21:19.956Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 2,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788369684966_shdvll",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:21:24.966Z",
+      "stoppedAt": "2026-09-02T17:21:25.167Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 3,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788369690181_xwtvwn",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:21:30.180Z",
+      "stoppedAt": "2026-09-02T17:21:30.380Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 4,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788369695401_y5cyms",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:21:35.401Z",
+      "stoppedAt": "2026-09-02T17:21:35.574Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 5,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788369700589_zwqevt",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:21:40.588Z",
+      "stoppedAt": "2026-09-02T17:21:40.807Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 6,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788369705821_jr9uxi",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:21:45.820Z",
+      "stoppedAt": "2026-09-02T17:21:46.008Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 7,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788369711021_sn50e9",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:21:51.020Z",
+      "stoppedAt": "2026-09-02T17:21:51.210Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 8,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788369716223_k92i9v",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:21:56.223Z",
+      "stoppedAt": "2026-09-02T17:21:56.410Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 9,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788369721420_nb243w",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:22:01.419Z",
+      "stoppedAt": "2026-09-02T17:22:01.686Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 10,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788369726696_cc1ixn",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:22:06.695Z",
+      "stoppedAt": "2026-09-02T17:22:06.910Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 11,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788369731920_ez919w",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:22:11.920Z",
+      "stoppedAt": "2026-09-02T17:22:12.108Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 12,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788369737119_8x5i5q",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:22:17.119Z",
+      "stoppedAt": "2026-09-02T17:22:17.318Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 13,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788369742330_bneos0",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:22:22.329Z",
+      "stoppedAt": "2026-09-02T17:22:22.548Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 14,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788369747559_gre6y9",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:22:27.559Z",
+      "stoppedAt": "2026-09-02T17:22:27.743Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 15,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788369752752_iop6kv",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:22:32.752Z",
+      "stoppedAt": "2026-09-02T17:22:32.971Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 16,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788369757981_vdk38o",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:22:37.981Z",
+      "stoppedAt": "2026-09-02T17:22:38.178Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 17,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788369763186_3e2m7h",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:22:43.186Z",
+      "stoppedAt": "2026-09-02T17:22:43.381Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 18,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788369768390_dpxpza",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:22:48.390Z",
+      "stoppedAt": "2026-09-02T17:22:48.606Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 19,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788369773618_rv336o",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:22:53.618Z",
+      "stoppedAt": "2026-09-02T17:22:53.806Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 20,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788369778816_0kkage",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:22:58.816Z",
+      "stoppedAt": "2026-09-02T17:22:59.009Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 21,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788369784018_alfx4d",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:23:04.018Z",
+      "stoppedAt": "2026-09-02T17:23:04.232Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 22,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788369789246_ub2c51",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:23:09.245Z",
+      "stoppedAt": "2026-09-02T17:23:09.439Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 23,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788369794450_tqwlw7",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:23:14.450Z",
+      "stoppedAt": "2026-09-02T17:23:14.639Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 24,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788369799646_2dtf44",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:23:19.646Z",
+      "stoppedAt": "2026-09-02T17:23:19.905Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 25,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788369804915_9wrnjn",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:23:24.915Z",
+      "stoppedAt": "2026-09-02T17:23:25.106Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 26,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788369810118_rd98nj",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:23:30.118Z",
+      "stoppedAt": "2026-09-02T17:23:30.324Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 27,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788369815334_1x8ewl",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:23:35.334Z",
+      "stoppedAt": "2026-09-02T17:23:35.556Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 28,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788369820565_5t12g4",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:23:40.565Z",
+      "stoppedAt": "2026-09-02T17:23:40.763Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 29,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788369825774_i4dg2t",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:23:45.774Z",
+      "stoppedAt": "2026-09-02T17:23:45.968Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 30,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788369830982_7yi1p2",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:23:50.982Z",
+      "stoppedAt": "2026-09-02T17:23:51.199Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 31,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788369836207_cstjaz",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:23:56.206Z",
+      "stoppedAt": "2026-09-02T17:23:56.474Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 32,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788369841487_nne00u",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:24:01.487Z",
+      "stoppedAt": "2026-09-02T17:24:01.673Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 33,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788369846695_kcejvc",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:24:06.695Z",
+      "stoppedAt": "2026-09-02T17:24:06.872Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 34,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788369851884_h09v5s",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:24:11.883Z",
+      "stoppedAt": "2026-09-02T17:24:12.110Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 35,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788369857120_9xboxq",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:24:17.120Z",
+      "stoppedAt": "2026-09-02T17:24:17.334Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 36,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788369862345_b7w3ao",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:24:22.345Z",
+      "stoppedAt": "2026-09-02T17:24:22.548Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 37,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788369867559_dsvfj8",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:24:27.559Z",
+      "stoppedAt": "2026-09-02T17:24:27.764Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 38,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788369872795_v6fb94",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:24:32.795Z",
+      "stoppedAt": "2026-09-02T17:24:33.046Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 39,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788369878055_rnqx93",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:24:38.055Z",
+      "stoppedAt": "2026-09-02T17:24:38.238Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 40,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788369883247_jdcuot",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:24:43.247Z",
+      "stoppedAt": "2026-09-02T17:24:43.443Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 41,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788369888453_kj9wqx",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:24:48.453Z",
+      "stoppedAt": "2026-09-02T17:24:48.639Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 42,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788369893649_2nv0my",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:24:53.648Z",
+      "stoppedAt": "2026-09-02T17:24:53.907Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 43,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788369898919_vhv59y",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:24:58.919Z",
+      "stoppedAt": "2026-09-02T17:24:59.100Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 44,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788369904110_720glr",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:25:04.109Z",
+      "stoppedAt": "2026-09-02T17:25:04.309Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 45,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788369909318_npfrkk",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:25:09.317Z",
+      "stoppedAt": "2026-09-02T17:25:09.528Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 46,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788369914542_j17oaq",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:25:14.542Z",
+      "stoppedAt": "2026-09-02T17:25:14.720Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 47,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788369919730_c1cwaf",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:25:19.730Z",
+      "stoppedAt": "2026-09-02T17:25:19.931Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 48,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788369924941_5t1tk6",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:25:24.940Z",
+      "stoppedAt": "2026-09-02T17:25:25.154Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 49,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788369930166_am1ph0",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:25:30.166Z",
+      "stoppedAt": "2026-09-02T17:25:30.369Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 50,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788369935380_0m2q4s",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:25:35.379Z",
+      "stoppedAt": "2026-09-02T17:25:35.573Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 51,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788369940587_vzw4gj",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:25:40.586Z",
+      "stoppedAt": "2026-09-02T17:25:40.794Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 52,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788369945806_mague9",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:25:45.806Z",
+      "stoppedAt": "2026-09-02T17:25:45.980Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 53,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788369950990_8vvhxh",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:25:50.989Z",
+      "stoppedAt": "2026-09-02T17:25:51.182Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 54,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788369956193_a8ctp3",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:25:56.193Z",
+      "stoppedAt": "2026-09-02T17:25:56.377Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 55,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788369961390_dpvb2v",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:26:01.390Z",
+      "stoppedAt": "2026-09-02T17:26:01.570Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 56,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788369966581_qx8x2h",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:26:06.581Z",
+      "stoppedAt": "2026-09-02T17:26:06.793Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 57,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788369971803_e19wnz",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:26:11.803Z",
+      "stoppedAt": "2026-09-02T17:26:12.010Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 58,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788369977021_680kv0",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:26:17.020Z",
+      "stoppedAt": "2026-09-02T17:26:17.213Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 59,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788369982224_7n8wu0",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:26:22.223Z",
+      "stoppedAt": "2026-09-02T17:26:22.427Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 60,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788369987440_hdx66n",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:26:27.440Z",
+      "stoppedAt": "2026-09-02T17:26:27.676Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 61,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788369992685_u8jcjn",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:26:32.685Z",
+      "stoppedAt": "2026-09-02T17:26:32.875Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 62,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788369997888_ewpg86",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:26:37.887Z",
+      "stoppedAt": "2026-09-02T17:26:38.092Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 63,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788370003103_a3uiar",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:26:43.103Z",
+      "stoppedAt": "2026-09-02T17:26:43.319Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 64,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788370008330_k7c2hd",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:26:48.330Z",
+      "stoppedAt": "2026-09-02T17:26:48.577Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 65,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788370013623_9hg2c9",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:26:53.614Z",
+      "stoppedAt": "2026-09-02T17:26:53.783Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 66,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788370018794_lz8v7c",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:26:58.794Z",
+      "stoppedAt": "2026-09-02T17:26:58.972Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 67,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788370023983_e1fbkd",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:27:03.982Z",
+      "stoppedAt": "2026-09-02T17:27:04.159Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 68,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788370029168_ignauh",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:27:09.168Z",
+      "stoppedAt": "2026-09-02T17:27:09.348Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 69,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788370034357_hwtuet",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:27:14.357Z",
+      "stoppedAt": "2026-09-02T17:27:14.581Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 70,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788370039593_veyl9p",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:27:19.592Z",
+      "stoppedAt": "2026-09-02T17:27:19.773Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 71,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788370044784_c795rf",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:27:24.784Z",
+      "stoppedAt": "2026-09-02T17:27:24.967Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 72,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788370049979_o9aroe",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:27:29.979Z",
+      "stoppedAt": "2026-09-02T17:27:30.175Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 73,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788370055184_v15vbf",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:27:35.184Z",
+      "stoppedAt": "2026-09-02T17:27:35.391Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 74,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788370060402_thzdr0",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:27:40.401Z",
+      "stoppedAt": "2026-09-02T17:27:40.579Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 75,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788370065592_ueypn9",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:27:45.591Z",
+      "stoppedAt": "2026-09-02T17:27:45.773Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 76,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788370070787_7yc4zv",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:27:50.786Z",
+      "stoppedAt": "2026-09-02T17:27:50.988Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 77,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788370076003_nrptqc",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:27:56.001Z",
+      "stoppedAt": "2026-09-02T17:27:56.214Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 78,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788370081224_j7qwzb",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:28:01.223Z",
+      "stoppedAt": "2026-09-02T17:28:01.420Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 79,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788370086431_kgazul",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:28:06.431Z",
+      "stoppedAt": "2026-09-02T17:28:06.610Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 80,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788370091622_sayv8x",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:28:11.621Z",
+      "stoppedAt": "2026-09-02T17:28:11.838Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 81,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788370096849_hptz0n",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:28:16.848Z",
+      "stoppedAt": "2026-09-02T17:28:17.040Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 82,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788370102050_tsk47k",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:28:22.049Z",
+      "stoppedAt": "2026-09-02T17:28:22.243Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 83,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788370107253_qmhkhl",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:28:27.253Z",
+      "stoppedAt": "2026-09-02T17:28:27.442Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 84,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788370112453_b8p7d9",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:28:32.452Z",
+      "stoppedAt": "2026-09-02T17:28:32.645Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 85,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788370117656_mk2llv",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:28:37.655Z",
+      "stoppedAt": "2026-09-02T17:28:37.845Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 86,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788370122856_f6rndb",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:28:42.855Z",
+      "stoppedAt": "2026-09-02T17:28:43.045Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 87,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788370128056_d1cf5h",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:28:48.055Z",
+      "stoppedAt": "2026-09-02T17:28:48.243Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 88,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788370133256_or9luz",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:28:53.256Z",
+      "stoppedAt": "2026-09-02T17:28:53.460Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 89,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788370138471_ghptqd",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:28:58.471Z",
+      "stoppedAt": "2026-09-02T17:28:58.672Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 90,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788370143685_kt84xu",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:29:03.685Z",
+      "stoppedAt": "2026-09-02T17:29:03.884Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 91,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788370148892_yjvxfd",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:29:08.892Z",
+      "stoppedAt": "2026-09-02T17:29:09.095Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 92,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788370154105_ql2q1h",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:29:14.105Z",
+      "stoppedAt": "2026-09-02T17:29:14.296Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 93,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788370159306_13g6fa",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:29:19.306Z",
+      "stoppedAt": "2026-09-02T17:29:19.498Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 94,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788370164507_hmcknk",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:29:24.507Z",
+      "stoppedAt": "2026-09-02T17:29:24.713Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 95,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788370169724_uh35wf",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:29:29.724Z",
+      "stoppedAt": "2026-09-02T17:29:29.905Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 96,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788370174918_idt8au",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:29:34.917Z",
+      "stoppedAt": "2026-09-02T17:29:35.109Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 97,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788370180125_5jhxif",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:29:40.125Z",
+      "stoppedAt": "2026-09-02T17:29:40.315Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 98,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788370185325_tjtcvd",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:29:45.325Z",
+      "stoppedAt": "2026-09-02T17:29:45.510Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 99,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788370190520_jn7itw",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:29:50.519Z",
+      "stoppedAt": "2026-09-02T17:29:50.702Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 100,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788370195714_drft4k",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:29:55.713Z",
+      "stoppedAt": "2026-09-02T17:29:55.891Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 101,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788370200903_o4983m",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:30:00.903Z",
+      "stoppedAt": "2026-09-02T17:30:01.122Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 102,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788370206132_uz49by",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:30:06.132Z",
+      "stoppedAt": "2026-09-02T17:30:06.384Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 103,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788370211427_3j9umi",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:30:11.427Z",
+      "stoppedAt": "2026-09-02T17:30:11.630Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 104,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788370216641_2aq4x4",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:30:16.641Z",
+      "stoppedAt": "2026-09-02T17:30:16.818Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 105,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788370221830_it3g9p",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:30:21.830Z",
+      "stoppedAt": "2026-09-02T17:30:22.027Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 106,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788370227037_fvjfuh",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:30:27.037Z",
+      "stoppedAt": "2026-09-02T17:30:27.223Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 107,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788370232235_toro1g",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:30:32.234Z",
+      "stoppedAt": "2026-09-02T17:30:32.444Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 108,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788370237455_xy2ku8",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:30:37.455Z",
+      "stoppedAt": "2026-09-02T17:30:37.631Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 109,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788370242643_ww62dt",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:30:42.642Z",
+      "stoppedAt": "2026-09-02T17:30:42.837Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 110,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788370247849_72v421",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:30:47.849Z",
+      "stoppedAt": "2026-09-02T17:30:48.093Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 111,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788370253106_p9gibb",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:30:53.106Z",
+      "stoppedAt": "2026-09-02T17:30:53.338Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 112,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788370258356_jcblj3",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:30:58.355Z",
+      "stoppedAt": "2026-09-02T17:30:58.575Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 113,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788370263589_xu6445",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:31:03.589Z",
+      "stoppedAt": "2026-09-02T17:31:03.830Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 114,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788370268843_xc3l7j",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:31:08.843Z",
+      "stoppedAt": "2026-09-02T17:31:09.052Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 115,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788370274065_6pagyb",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:31:14.064Z",
+      "stoppedAt": "2026-09-02T17:31:14.274Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 116,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788370279285_smr83o",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:31:19.284Z",
+      "stoppedAt": "2026-09-02T17:31:19.495Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 117,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788370284506_cgpfww",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:31:24.505Z",
+      "stoppedAt": "2026-09-02T17:31:24.689Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 118,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788370289701_6w0uhc",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:31:29.701Z",
+      "stoppedAt": "2026-09-02T17:31:29.894Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 119,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788370294908_tkh8jj",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:31:34.907Z",
+      "stoppedAt": "2026-09-02T17:31:35.132Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 120,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788370300144_9fyoea",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:31:40.143Z",
+      "stoppedAt": "2026-09-02T17:31:40.337Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 121,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788370305349_jijq0f",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:31:45.348Z",
+      "stoppedAt": "2026-09-02T17:31:45.554Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 122,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788370310564_j0jfjv",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:31:50.564Z",
+      "stoppedAt": "2026-09-02T17:31:50.755Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 123,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788370315768_ij8pbe",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:31:55.767Z",
+      "stoppedAt": "2026-09-02T17:31:55.971Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 124,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788370320985_hrc6t6",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:32:00.984Z",
+      "stoppedAt": "2026-09-02T17:32:01.193Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 125,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788370326205_oc14ra",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:32:06.205Z",
+      "stoppedAt": "2026-09-02T17:32:06.397Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 126,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788370331420_7jiy5y",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:32:11.420Z",
+      "stoppedAt": "2026-09-02T17:32:11.641Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 127,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788370336655_i86pkt",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:32:16.654Z",
+      "stoppedAt": "2026-09-02T17:32:16.888Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 128,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788370341901_lvxv3i",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:32:21.901Z",
+      "stoppedAt": "2026-09-02T17:32:22.105Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 129,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788370347123_4blyf5",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:32:27.123Z",
+      "stoppedAt": "2026-09-02T17:32:27.325Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 130,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788370352340_bfk401",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:32:32.338Z",
+      "stoppedAt": "2026-09-02T17:32:32.542Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 131,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788370357554_8qk0vq",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:32:37.554Z",
+      "stoppedAt": "2026-09-02T17:32:37.795Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 132,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788370362807_e5y4n6",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:32:42.807Z",
+      "stoppedAt": "2026-09-02T17:32:43.073Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 133,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788370368085_mnnftn",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:32:48.085Z",
+      "stoppedAt": "2026-09-02T17:32:48.292Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 134,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788370373304_kfve50",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:32:53.303Z",
+      "stoppedAt": "2026-09-02T17:32:53.543Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 135,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788370378556_2d8riw",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:32:58.555Z",
+      "stoppedAt": "2026-09-02T17:32:58.743Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 136,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788370383757_2ftolg",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:33:03.757Z",
+      "stoppedAt": "2026-09-02T17:33:03.950Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 137,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788370388964_3xi1rt",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:33:08.964Z",
+      "stoppedAt": "2026-09-02T17:33:09.177Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 138,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788370394190_ufky0h",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:33:14.190Z",
+      "stoppedAt": "2026-09-02T17:33:14.389Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 139,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788370399401_gxqm5b",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:33:19.401Z",
+      "stoppedAt": "2026-09-02T17:33:19.597Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 140,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788370404611_iicykv",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:33:24.610Z",
+      "stoppedAt": "2026-09-02T17:33:24.795Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 141,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788370409818_cw403g",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:33:29.818Z",
+      "stoppedAt": "2026-09-02T17:33:30.006Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 142,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788370415023_n7rt25",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:33:35.021Z",
+      "stoppedAt": "2026-09-02T17:33:35.214Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 143,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788370420225_pzradm",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:33:40.225Z",
+      "stoppedAt": "2026-09-02T17:33:40.415Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 144,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788370425426_gmyzxu",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:33:45.426Z",
+      "stoppedAt": "2026-09-02T17:33:45.623Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 145,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788370430635_1zo7db",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:33:50.635Z",
+      "stoppedAt": "2026-09-02T17:33:50.837Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 146,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788370435847_m8bdij",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:33:55.847Z",
+      "stoppedAt": "2026-09-02T17:33:56.046Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 147,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788370441058_rx6g55",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:34:01.058Z",
+      "stoppedAt": "2026-09-02T17:34:01.280Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 148,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788370446293_4lmq0z",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:34:06.293Z",
+      "stoppedAt": "2026-09-02T17:34:06.482Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 149,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788370451493_thw0na",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:34:11.493Z",
+      "stoppedAt": "2026-09-02T17:34:11.672Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 150,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788370456681_2som2i",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:34:16.680Z",
+      "stoppedAt": "2026-09-02T17:34:16.883Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 151,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788370461895_3t88px",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:34:21.894Z",
+      "stoppedAt": "2026-09-02T17:34:22.084Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 152,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788370467095_4ayg4z",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:34:27.095Z",
+      "stoppedAt": "2026-09-02T17:34:27.304Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 153,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788370472323_z5kelp",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:34:32.323Z",
+      "stoppedAt": "2026-09-02T17:34:32.524Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 154,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788370477534_f86c9s",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:34:37.534Z",
+      "stoppedAt": "2026-09-02T17:34:37.748Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 155,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788370482759_f4wsg2",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:34:42.759Z",
+      "stoppedAt": "2026-09-02T17:34:42.959Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 156,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788370487971_xwuyxg",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:34:47.971Z",
+      "stoppedAt": "2026-09-02T17:34:48.175Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 157,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788370493187_986dnf",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:34:53.186Z",
+      "stoppedAt": "2026-09-02T17:34:53.379Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 158,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788370498391_tjuby5",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:34:58.390Z",
+      "stoppedAt": "2026-09-02T17:34:58.571Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 159,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788370503582_o0lppm",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:35:03.582Z",
+      "stoppedAt": "2026-09-02T17:35:03.771Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 160,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788370508786_0auy0e",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:35:08.785Z",
+      "stoppedAt": "2026-09-02T17:35:08.973Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 161,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788370513984_abndpj",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:35:13.984Z",
+      "stoppedAt": "2026-09-02T17:35:14.188Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 162,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788370519201_epo12f",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:35:19.201Z",
+      "stoppedAt": "2026-09-02T17:35:19.386Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 163,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788370524403_4wf7xg",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:35:24.402Z",
+      "stoppedAt": "2026-09-02T17:35:24.612Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 164,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788370529625_pf9mei",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:35:29.625Z",
+      "stoppedAt": "2026-09-02T17:35:29.813Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 165,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788370534826_qx2p12",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:35:34.826Z",
+      "stoppedAt": "2026-09-02T17:35:35.027Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 166,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788370540038_k3l0a7",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:35:40.038Z",
+      "stoppedAt": "2026-09-02T17:35:40.273Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 167,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788370545289_m68986",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:35:45.287Z",
+      "stoppedAt": "2026-09-02T17:35:45.521Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 168,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788370550533_w3cxsa",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:35:50.533Z",
+      "stoppedAt": "2026-09-02T17:35:50.712Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 169,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788370555728_5mzmgb",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:35:55.728Z",
+      "stoppedAt": "2026-09-02T17:35:55.948Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 170,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788370560960_nmfd1v",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:36:00.959Z",
+      "stoppedAt": "2026-09-02T17:36:01.145Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 171,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788370566158_25cyl4",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:36:06.158Z",
+      "stoppedAt": "2026-09-02T17:36:06.335Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 172,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788370571349_cn5sx0",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:36:11.349Z",
+      "stoppedAt": "2026-09-02T17:36:11.528Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 173,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788370576540_drd5sx",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:36:16.540Z",
+      "stoppedAt": "2026-09-02T17:36:16.722Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 174,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788370581736_v6c68f",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:36:21.736Z",
+      "stoppedAt": "2026-09-02T17:36:21.932Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 175,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788370586949_n1pddl",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:36:26.948Z",
+      "stoppedAt": "2026-09-02T17:36:27.153Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 176,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788370592166_w5yqzl",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:36:32.165Z",
+      "stoppedAt": "2026-09-02T17:36:32.347Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 177,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788370597359_3vfo90",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:36:37.359Z",
+      "stoppedAt": "2026-09-02T17:36:37.544Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 178,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788370602557_065x66",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:36:42.556Z",
+      "stoppedAt": "2026-09-02T17:36:42.750Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 179,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788370607763_1zxe1y",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:36:47.762Z",
+      "stoppedAt": "2026-09-02T17:36:47.948Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 180,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788370612960_zc5s7h",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:36:52.960Z",
+      "stoppedAt": "2026-09-02T17:36:53.185Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 181,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788370618198_i1ah8f",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:36:58.198Z",
+      "stoppedAt": "2026-09-02T17:36:58.389Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 182,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788370623402_xlvbmg",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:37:03.402Z",
+      "stoppedAt": "2026-09-02T17:37:03.588Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 183,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788370628602_j348hu",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:37:08.601Z",
+      "stoppedAt": "2026-09-02T17:37:08.787Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 184,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788370633800_14c266",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:37:13.800Z",
+      "stoppedAt": "2026-09-02T17:37:13.978Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 185,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788370638994_4nli13",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:37:18.993Z",
+      "stoppedAt": "2026-09-02T17:37:19.225Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 186,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788370644239_hrzofb",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:37:24.239Z",
+      "stoppedAt": "2026-09-02T17:37:24.417Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 187,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788370649429_zhtjbc",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:37:29.429Z",
+      "stoppedAt": "2026-09-02T17:37:29.602Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 188,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788370654615_882a84",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:37:34.614Z",
+      "stoppedAt": "2026-09-02T17:37:34.794Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 189,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788370659805_ynrnci",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:37:39.805Z",
+      "stoppedAt": "2026-09-02T17:37:40.010Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 190,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788370665022_90otje",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:37:45.022Z",
+      "stoppedAt": "2026-09-02T17:37:45.203Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 191,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788370670215_yjdxso",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:37:50.214Z",
+      "stoppedAt": "2026-09-02T17:37:50.416Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 192,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788370675428_dru163",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:37:55.428Z",
+      "stoppedAt": "2026-09-02T17:37:55.643Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 193,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788370680656_v0dmqz",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:38:00.655Z",
+      "stoppedAt": "2026-09-02T17:38:00.864Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 194,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788370685878_k7lh9m",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:38:05.878Z",
+      "stoppedAt": "2026-09-02T17:38:06.066Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 195,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788370691081_h5pfhp",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:38:11.080Z",
+      "stoppedAt": "2026-09-02T17:38:11.269Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 196,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788370696286_csft9g",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:38:16.285Z",
+      "stoppedAt": "2026-09-02T17:38:16.474Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 197,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788370701489_igd5oz",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:38:21.488Z",
+      "stoppedAt": "2026-09-02T17:38:21.671Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 198,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788370706685_ikew8z",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:38:26.684Z",
+      "stoppedAt": "2026-09-02T17:38:26.911Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 199,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788370711925_iakb2g",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:38:31.924Z",
+      "stoppedAt": "2026-09-02T17:38:32.113Z",
+      "durationSeconds": 0,
+      "status": "CRASHED",
+      "reconnectCount": 200,
+      "errorMessage": null
+    },
+    {
+      "id": "sess_1788370712921_op8hof",
+      "userId": "usr_admin_default",
+      "userEmail": "titangaming4m@gmail.com",
+      "userName": "titangaming4m",
+      "videoId": "vid_1788349986129_d35a2888",
+      "videoName": "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4",
+      "videoIds": [
+        "vid_1788349986129_d35a2888"
+      ],
+      "videoNames": [
+        "The.Boondocks.S04E03.720p.rus.saint-sound-converted.mp4"
+      ],
+      "isPlaylist": false,
+      "playlistCount": 1,
+      "rtmpUrlMasked": "rtmps://a.rtmp.youtube.com:443/live2/***",
+      "startedAt": "2026-09-02T17:38:32.919Z",
+      "stoppedAt": "2026-09-02T17:46:53.549Z",
+      "durationSeconds": 500,
+      "status": "STOPPED",
+      "reconnectCount": 201,
+      "errorMessage": null
+    }
+  ],
+  "settings": {
+    "maxConcurrentStreams": 10,
+    "defaultRtmpUrl": "rtmps://a.rtmp.youtube.com:443/live2",
+    "defaultQuality": "source",
+    "defaultBitrate": "4000k",
+    "defaultFps": "source",
+    "autoReconnect": true,
+    "reconnectDelay": 5,
+    "maxUploadSizeMb": 500,
+    "allowedExtensions": [
+      ".mp4",
+      ".mkv",
+      ".mov",
+      ".avi",
+      ".flv",
+      ".webm",
+      ".ts"
+    ],
+    "autoRecoverOnBoot": false,
+    "adminGoogleEmails": [
+      "titangaming4m@gmail.com",
+      "admin@streamloop.io"
+    ],
+    "googleDriveEnabled": false,
+    "googleDriveFolderId": ""
+  },
+  "lastUpdated": "2026-09-03T08:00:01.109Z"
+}

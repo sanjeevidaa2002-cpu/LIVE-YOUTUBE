@@ -82,6 +82,13 @@ export const VideoLibraryPage: React.FC<VideoLibraryPageProps> = ({
 
   useEffect(() => {
     fetchVideos();
+    const handleVideosUpdated = () => {
+      fetchVideos();
+    };
+    window.addEventListener('streamloop:videos-updated', handleVideosUpdated);
+    return () => {
+      window.removeEventListener('streamloop:videos-updated', handleVideosUpdated);
+    };
   }, []);
 
   const showToast = (message: string) => {
