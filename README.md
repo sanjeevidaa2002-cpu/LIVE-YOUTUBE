@@ -1,79 +1,155 @@
-# StreamLoop 24×7 - YouTube RTMP Video Loop Streaming Engine
+# StreamVault
 
-A production-ready, full-stack application that enables authenticated users to upload video files and broadcast them in an endless, continuous 24×7 loop directly to YouTube Live via server-side FFmpeg processes.
+A production-ready video streaming / playback platform. Users watch, search, and
+filter videos; only **Super Admins** and users promoted to **Manager** can
+upload or manage video content. There is no social/upload feature for regular
+users — this is a curated streaming platform, not a UGC site.
 
----
+Built with React + TypeScript + Vite + Tailwind CSS + shadcn/ui-style
+components, backed entirely by Supabase (Auth, Postgres, Storage).
 
-## Key Features
+## Tech Stack
 
-1. **True Server-Side Persistence**: The livestream is executed as an isolated background FFmpeg process (`child_process.spawn`) on the server. Closing the browser or losing client internet connection has zero effect on the livestream.
-2. **Endless Video Looping**: Utilizes `-stream_loop -1` combined with YouTube-standard FLV muxing (`-f flv`) to provide continuous, seamless looping without dropped frames.
-3. **Auto-Reconnect & Auto-Recovery**:
-   - Reconnects automatically to YouTube RTMP if connection is temporarily dropped.
-   - Restores and relaunches any active stream if the server host or container reboots.
-4. **Secure Stream Key Handling**: YouTube stream keys are stored securely on the backend and masked in all API responses and logs. FFmpeg is executed with argument arrays to prevent command injection vulnerabilities.
-5. **Real-time Telemetry & Live Logs**:
-   - Live stream duration and loop iteration counter.
-   - Real-time encoder metrics: FPS, Bitrate, Encoding speed, and Total frames.
-   - Live SSE-powered terminal streaming STDIN/STDOUT logs with search and filter capabilities.
-6. **Video Library & Metadata**: Automatic thumbnail generation and duration/resolution/FPS/codec extraction using FFprobe.
-7. **System Diagnostics**: Server CPU, RAM usage, storage breakdown, and binary availability checks for FFmpeg and FFprobe.
+- React 18 + TypeScript + Vite
+- Tailwind CSS + shadcn/ui-style component primitives (Radix UI)
+- React Router v6
+- Supabase (`@supabase/supabase-js`): Auth, Postgres, Storage
+- npm
 
----
+## 1. Prerequisites
 
-## Default Admin Credentials
+- Node.js 18+
+- A free [Supabase](https://supabase.com) project
 
-- **Username**: `admin`
-- **Password**: `admin123` *(Can be updated from the Settings page)*
+## 2. Set up Supabase
 
----
+1. Create a new project at [supabase.com](https://supabase.com).
+2. Go to **SQL Editor** → **New query**, paste the entire contents of
+   [`supabase/schema.sql`](./supabase/schema.sql), and run it. This creates:
+   - `profiles`, `categories`, `videos`, `video_views` tables
+   - All indexes, triggers, and the `handle_new_user` auto-profile trigger
+   - Row Level Security policies for every table
+   - The `videos` and `thumbnails` Storage buckets + Storage RLS policies
+   - Helper functions (`is_admin()`, `is_manager_or_admin()`, `record_video_view()`)
+   - A handful of seed categories
+3. Go to **Project Settings → API** and copy:
+   - **Project URL** → `VITE_SUPABASE_URL`
+   - **anon / public** key → `VITE_SUPABASE_PUBLISHABLE_KEY`
 
-## YouTube Stream Configuration
+   Never copy the `service_role` / secret key into this project — it must
+   never reach the frontend.
 
-1. Go to [YouTube Studio Live Dashboard](https://studio.youtube.com/channel/live).
-2. Click **Go Live** and select **Stream**.
-3. Copy your **Stream URL** (`rtmp://a.rtmp.youtube.com/live2`) and **Stream Key**.
-4. In StreamLoop, upload your video, paste your stream key, choose your preferred quality/bitrate, and click **START STREAM**.
-
----
-
-## Deployment Options
-
-### 1. Docker & Docker Compose (Recommended)
+## 3. Configure environment variables
 
 ```bash
-# Build and run with Docker Compose
-docker-compose up -d --build
-
-# View container logs
-docker-compose logs -f
+cp .env.example .env
 ```
 
-### 2. Linux VPS (Ubuntu / Debian) with PM2 & Systemd
+Fill in:
+
+```
+VITE_SUPABASE_URL=https://your-project.supabase.co
+VITE_SUPABASE_PUBLISHABLE_KEY=your-anon-public-key
+```
+
+## 4. Install and run
 
 ```bash
-# 1. Install Node.js 20 & FFmpeg
-sudo apt update
-sudo apt install -y nodejs npm ffmpeg
-
-# 2. Clone repository & install dependencies
 npm install
-
-# 3. Build frontend & backend
-npm run build
-
-# 4. Start with PM2
-sudo npm install -g pm2
-pm2 start ecosystem.config.cjs
-pm2 save
-pm2 startup
+npm run dev
 ```
 
----
+Open http://localhost:5173.
 
-## Architecture
+Build for production with `npm run build` (runs `tsc -b && vite build`);
+preview the production build with `npm run preview`.
 
-- **Backend**: Express + Node.js with native TypeScript build via `esbuild`.
-- **Streaming Engine**: `StreamingService` singleton managing persistent FFmpeg process lifecycles.
-- **Frontend**: React 19 + Vite + Tailwind CSS + Lucide Icons.
-- **Real-Time Layer**: Server-Sent Events (`/api/stream/events`) for log streaming and encoder telemetry.
+## 5. Create your first Super Admin
+
+There is **no hardcoded admin password** anywhere in this app. To create your
+first Super Admin:
+
+1. Sign up for a normal account through the app's `/signup` page.
+2. In the Supabase SQL Editor, run:
+
+   ```sql
+   update public.profiles set role = 'admin' where email = 'you@example.com';
+   ```
+
+3. Sign out and back in — you'll be routed to `/admin` automatically.
+
+From the Admin Dashboard's **Managers** page you can then promote/demote any
+other user to/from the Manager role.
+
+## 6. Roles & permissions
+
+| Capability                          | User | Manager | Super Admin |
+|--------------------------------------|:----:|:-------:|:------------:|
+| Browse / search / watch videos       | ✅   | ✅      | ✅           |
+| Upload / edit / delete **own** videos| ❌   | ✅      | ✅           |
+| Manage **any** video                 | ❌   | ❌      | ✅           |
+| Manage categories                    | ❌   | ❌      | ✅           |
+| Manage users / activate-deactivate   | ❌   | ❌      | ✅           |
+| Assign/remove Manager role           | ❌   | ❌      | ✅           |
+| View analytics dashboard             | ❌   | ❌      | ✅           |
+
+**This is enforced in two places, and the database is the source of truth:**
+
+- **Frontend**: `ProtectedRoute` (`src/components/ProtectedRoute.tsx`) redirects
+  unauthenticated users to `/login` and blocks users whose role doesn't match
+  a route's `allowedRoles`. This is a UX convenience only.
+- **Database (authoritative)**: every table has Row Level Security enabled
+  (see `supabase/schema.sql`). Even if the frontend check were bypassed
+  entirely, Postgres itself rejects any unauthorized `INSERT`/`UPDATE`/`DELETE`,
+  and Storage RLS policies mean only `admin`/`manager` accounts can ever write
+  to the `videos` or `thumbnails` buckets. A `user`-role account cannot upload
+  a file to storage or write a video row no matter what the client sends.
+
+## 7. Project structure
+
+```
+src/
+  components/       Shared UI (VideoCard, VideoPlayer, VideoForm, ui/ primitives, ...)
+  contexts/         AuthContext (session, profile, role)
+  hooks/            useDebounce, use-toast
+  layouts/          MainLayout, AuthLayout, AdminLayout, ManagerLayout, DashboardLayout
+  lib/              supabase client, utils
+  pages/
+    auth/           Login, Signup, ForgotPassword, ResetPassword
+    user/           Home, Videos, VideoDetails, Category, Profile
+    admin/          Dashboard, Videos, UploadVideo, EditVideo, Users, Managers,
+                     Categories, Analytics, Settings
+    manager/        Dashboard, Videos, UploadVideo, EditVideo, Profile
+  services/         Typed Supabase query/mutation wrappers (videoService,
+                     categoryService, userService, analyticsService, storageService)
+  types/            App + database types
+supabase/
+  schema.sql        Full schema, RLS, storage policies, seed data (run once)
+```
+
+## 8. Video upload flow
+
+1. Client validates file type (MP4/WebM/MOV, ≤500MB) and shows name/size.
+2. File is uploaded directly to the `videos` Storage bucket via `XMLHttpRequest`
+   (so we can show real upload progress), authenticated with the user's
+   Supabase session token — Storage RLS still requires `admin`/`manager` role.
+3. An optional thumbnail is uploaded to the `thumbnails` bucket the same way.
+4. A row is inserted into `videos` pointing at the uploaded file's public URL.
+5. **If step 4 fails**, the already-uploaded file(s) from steps 2–3 are deleted
+   so no orphaned files are left in Storage.
+
+## 9. View counting
+
+Views are recorded via the `record_video_view(p_video_id)` Postgres function
+(`SECURITY DEFINER`), called once when a video starts playing for the first
+time in that page load. It de-duplicates: the same signed-in user re-watching
+within 30 minutes will not increment the counter again.
+
+## 10. Notes on scope
+
+- Search uses `ilike` over title/description with trigram indexes for
+  performance; category filtering is a separate dropdown.
+- The video player is a custom-built HTML5 `<video>` player (no third-party
+  player dependency) supporting play/pause, seek, volume, fullscreen,
+  playback speed, and Picture-in-Picture where supported by the browser.
+- Dark theme is the default and only theme, per the design brief.
