@@ -7,6 +7,7 @@ import type { Category, VideoWithRelations } from "@/types";
 import VideoCard from "@/components/VideoCard";
 import VideoCardSkeleton from "@/components/VideoCardSkeleton";
 import EmptyState from "@/components/EmptyState";
+import ErrorState from "@/components/ErrorState";
 import Pagination from "@/components/Pagination";
 import { Button } from "@/components/ui/button";
 
@@ -19,6 +20,8 @@ export default function CategoryPage() {
   const [count, setCount] = useState(0);
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const [reloadKey, setReloadKey] = useState(0);
 
   useEffect(() => {
     setPage(1);
@@ -28,6 +31,7 @@ export default function CategoryPage() {
     if (!slug) return;
     let mounted = true;
     setLoading(true);
+    setError(null);
     getCategoryBySlug(slug)
       .then(async (cat) => {
         if (!mounted) return;
@@ -40,12 +44,30 @@ export default function CategoryPage() {
         setVideos(res.data);
         setCount(res.count);
       })
-      .catch(console.error)
+      .catch((err: unknown) => {
+        if (!mounted) return;
+        const message =
+          err instanceof Error ? err.message : "Please check your connection and try again.";
+        console.error("[StreamVault] Failed to load category:", message);
+        setError(message);
+      })
       .finally(() => mounted && setLoading(false));
     return () => {
       mounted = false;
     };
-  }, [slug, page]);
+  }, [slug, page, reloadKey]);
+
+  if (error) {
+    return (
+      <div className="container py-16">
+        <ErrorState
+          title="Couldn't load this category"
+          message={error}
+          onRetry={() => setReloadKey((n) => n + 1)}
+        />
+      </div>
+    );
+  }
 
   if (category === null) {
     return (

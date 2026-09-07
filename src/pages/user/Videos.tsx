@@ -8,6 +8,7 @@ import { useDebounce } from "@/hooks/useDebounce";
 import VideoCard from "@/components/VideoCard";
 import VideoCardSkeleton from "@/components/VideoCardSkeleton";
 import EmptyState from "@/components/EmptyState";
+import ErrorState from "@/components/ErrorState";
 import SearchBar from "@/components/SearchBar";
 import Pagination from "@/components/Pagination";
 import {
@@ -33,6 +34,8 @@ export default function Videos() {
   const [videos, setVideos] = useState<VideoWithRelations[]>([]);
   const [count, setCount] = useState(0);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const [reloadKey, setReloadKey] = useState(0);
 
   useEffect(() => {
     listCategories().then(setCategories).catch(console.error);
@@ -54,6 +57,7 @@ export default function Videos() {
   useEffect(() => {
     let mounted = true;
     setLoading(true);
+    setError(null);
     listVideos({
       page,
       pageSize: PAGE_SIZE,
@@ -65,12 +69,18 @@ export default function Videos() {
         setVideos(res.data);
         setCount(res.count);
       })
-      .catch(console.error)
+      .catch((err: unknown) => {
+        if (!mounted) return;
+        const message =
+          err instanceof Error ? err.message : "Please check your connection and try again.";
+        console.error("[StreamVault] Failed to load videos:", message);
+        setError(message);
+      })
       .finally(() => mounted && setLoading(false));
     return () => {
       mounted = false;
     };
-  }, [page, debouncedSearch, categoryId]);
+  }, [page, debouncedSearch, categoryId, reloadKey]);
 
   return (
     <div className="container py-8">
@@ -99,6 +109,14 @@ export default function Videos() {
             <VideoCardSkeleton key={i} />
           ))}
         </div>
+      ) : error ? (
+        <ErrorState
+          message={error}
+          onRetry={() => {
+            setLoading(true);
+            setReloadKey((n) => n + 1);
+          }}
+        />
       ) : videos.length === 0 ? (
         <EmptyState
           icon={SearchX}
