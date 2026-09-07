@@ -7,6 +7,7 @@ import type { Category, VideoWithRelations } from "@/types";
 import VideoCard from "@/components/VideoCard";
 import VideoCardSkeleton from "@/components/VideoCardSkeleton";
 import EmptyState from "@/components/EmptyState";
+import ErrorState from "@/components/ErrorState";
 import { Button } from "@/components/ui/button";
 
 function VideoRow({
@@ -51,10 +52,13 @@ export default function Home() {
   const [popular, setPopular] = useState<VideoWithRelations[]>([]);
   const [categories, setCategories] = useState<Category[]>([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const [reloadKey, setReloadKey] = useState(0);
 
   useEffect(() => {
     let mounted = true;
     async function load() {
+      setError(null);
       try {
         const [featuredRes, latestRes, popularRes, categoriesRes] = await Promise.all([
           listVideos({ featuredOnly: true, pageSize: 8 }),
@@ -68,7 +72,10 @@ export default function Home() {
         setPopular(popularRes.data);
         setCategories(categoriesRes);
       } catch (err) {
-        console.error(err);
+        const message =
+          err instanceof Error ? err.message : "Please check your connection and try again.";
+        console.error("[StreamVault] Failed to load homepage content:", message);
+        if (mounted) setError(message);
       } finally {
         if (mounted) setLoading(false);
       }
@@ -77,7 +84,7 @@ export default function Home() {
     return () => {
       mounted = false;
     };
-  }, []);
+  }, [reloadKey]);
 
   const hero = featured[0] ?? latest[0];
 
@@ -108,7 +115,20 @@ export default function Home() {
         </div>
       </section>
 
-      {categories.length > 0 && (
+      {error && (
+        <div className="container pt-8">
+          <ErrorState
+            title="Couldn't load videos"
+            message={error}
+            onRetry={() => {
+              setLoading(true);
+              setReloadKey((n) => n + 1);
+            }}
+          />
+        </div>
+      )}
+
+      {!error && categories.length > 0 && (
         <section className="container py-8">
           <div className="mb-4 flex items-center gap-2">
             <Compass className="h-5 w-5 text-primary" />
@@ -128,9 +148,13 @@ export default function Home() {
         </section>
       )}
 
-      <VideoRow title="Featured" icon={Sparkles} videos={featured} loading={loading} />
-      <VideoRow title="Latest Videos" icon={Compass} videos={latest} loading={loading} />
-      <VideoRow title="Popular Videos" icon={Flame} videos={popular} loading={loading} />
+      {!error && (
+        <>
+          <VideoRow title="Featured" icon={Sparkles} videos={featured} loading={loading} />
+          <VideoRow title="Latest Videos" icon={Compass} videos={latest} loading={loading} />
+          <VideoRow title="Popular Videos" icon={Flame} videos={popular} loading={loading} />
+        </>
+      )}
     </div>
   );
 }

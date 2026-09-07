@@ -16,11 +16,16 @@ interface AuthContextValue {
   session: Session | null;
   profile: Profile | null;
   loading: boolean;
+  /** Session bootstrap failed (network/Supabase unreachable). */
+  authError: string | null;
+  /** Signed in, but the profile row (and therefore the role) could not be read. */
+  profileError: string | null;
   isAuthenticated: boolean;
   role: Profile["role"] | null;
   isAdmin: boolean;
   isManager: boolean;
   isActive: boolean;
+  retryInit: () => void;
   signUp: (
     email: string,
     password: string,
@@ -44,34 +49,85 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [session, setSession] = useState<Session | null>(null);
   const [profile, setProfile] = useState<Profile | null>(null);
   const [loading, setLoading] = useState(true);
+  const [authError, setAuthError] = useState<string | null>(null);
+  const [profileError, setProfileError] = useState<string | null>(null);
+  const [initAttempt, setInitAttempt] = useState(0);
+
+  const retryInit = useCallback(() => {
+    setLoading(true);
+    setAuthError(null);
+    setProfileError(null);
+    setInitAttempt((n) => n + 1);
+  }, []);
 
   const fetchProfile = useCallback(async (userId: string) => {
-    const { data, error } = await supabase
-      .from("profiles")
-      .select("*")
-      .eq("id", userId)
-      .single();
+    try {
+      const { data, error } = await supabase
+        .from("profiles")
+        .select("*")
+        .eq("id", userId)
+        .single();
 
-    if (error) {
-      console.error("Failed to load profile:", error.message);
+      if (error) {
+        console.error("[StreamVault] Failed to load profile:", error.message);
+        setProfile(null);
+        setProfileError(error.message);
+        return;
+      }
+      setProfile(data);
+      setProfileError(null);
+    } catch (err) {
+      // Thrown (rather than returned) errors happen when the network request
+      // itself fails — offline, DNS failure, CORS, Supabase unreachable.
+      const message = err instanceof Error ? err.message : "Could not reach the server.";
+      console.error("[StreamVault] Profile request failed:", message);
       setProfile(null);
-      return;
+      setProfileError(message);
     }
-    setProfile(data);
   }, []);
 
   useEffect(() => {
     let mounted = true;
-
-    supabase.auth.getSession().then(async ({ data }) => {
+    // Guard against a session request that never settles (flaky mobile
+    // networks, blocked host). Without this the app would sit on a spinner
+    // forever, since `loading` would never flip to false.
+    const timeoutId = setTimeout(() => {
       if (!mounted) return;
-      setSession(data.session);
-      setUser(data.session?.user ?? null);
-      if (data.session?.user) {
-        await fetchProfile(data.session.user.id);
-      }
-      setLoading(false);
-    });
+      setLoading((stillLoading) => {
+        if (stillLoading) {
+          setAuthError(
+            "Timed out while contacting the authentication server. Check your connection and try again.",
+          );
+        }
+        return false;
+      });
+    }, 15000);
+
+    supabase.auth
+      .getSession()
+      .then(async ({ data, error }) => {
+        if (!mounted) return;
+        if (error) {
+          console.error("[StreamVault] getSession error:", error.message);
+          setAuthError(error.message);
+        }
+        setSession(data.session);
+        setUser(data.session?.user ?? null);
+        if (data.session?.user) {
+          await fetchProfile(data.session.user.id);
+        }
+      })
+      .catch((err: unknown) => {
+        // A rejected promise here previously skipped setLoading(false)
+        // entirely, pinning the app on an infinite loading state.
+        const message =
+          err instanceof Error ? err.message : "Could not reach the authentication server.";
+        console.error("[StreamVault] Session initialization failed:", message);
+        if (mounted) setAuthError(message);
+      })
+      .finally(() => {
+        if (mounted) setLoading(false);
+      });
 
     const { data: listener } = supabase.auth.onAuthStateChange(
       async (_event, newSession) => {
@@ -82,6 +138,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
           await fetchProfile(newSession.user.id);
         } else {
           setProfile(null);
+          setProfileError(null);
         }
         setLoading(false);
       },
@@ -89,9 +146,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
     return () => {
       mounted = false;
+      clearTimeout(timeoutId);
       listener.subscription.unsubscribe();
     };
-  }, [fetchProfile]);
+  }, [fetchProfile, initAttempt]);
 
   const signUp = useCallback(
     async (email: string, password: string, fullName: string) => {
@@ -158,11 +216,14 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       session,
       profile,
       loading,
+      authError,
+      profileError,
       isAuthenticated: !!user,
       role: profile?.role ?? null,
       isAdmin: profile?.role === "admin",
       isManager: profile?.role === "manager",
       isActive: profile?.is_active ?? true,
+      retryInit,
       signUp,
       signIn,
       signOut,
@@ -175,6 +236,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       session,
       profile,
       loading,
+      authError,
+      profileError,
+      retryInit,
       signUp,
       signIn,
       signOut,

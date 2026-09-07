@@ -1,11 +1,14 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import {
+  Loader2,
   Maximize,
   Minimize,
   Pause,
   PictureInPicture2,
   Play,
+  RotateCw,
   Settings,
+  VideoOff,
   Volume1,
   Volume2,
   VolumeX,
@@ -42,6 +45,10 @@ export default function VideoPlayer({ src, poster, onFirstPlay }: VideoPlayerPro
   const [buffered, setBuffered] = useState(0);
   const [hasStartedOnce, setHasStartedOnce] = useState(false);
   const [pipSupported, setPipSupported] = useState(false);
+  const [hasError, setHasError] = useState(false);
+  const [isBuffering, setIsBuffering] = useState(false);
+
+  const hasValidSource = typeof src === "string" && src.trim().length > 0;
 
   useEffect(() => {
     setPipSupported(
@@ -53,7 +60,15 @@ export default function VideoPlayer({ src, poster, onFirstPlay }: VideoPlayerPro
     const video = videoRef.current;
     if (!video) return;
     if (video.paused) {
-      video.play();
+      // play() rejects on mobile when the gesture isn't recognised as
+      // user-initiated, and on decode failures. An unhandled rejection here
+      // would surface as an uncaught error in the console.
+      const played = video.play();
+      if (played && typeof played.catch === "function") {
+        played.catch((err: unknown) => {
+          console.error("[StreamVault] Playback failed:", err);
+        });
+      }
     } else {
       video.pause();
     }
@@ -82,6 +97,19 @@ export default function VideoPlayer({ src, poster, onFirstPlay }: VideoPlayerPro
         setBuffered(video.buffered.end(video.buffered.length - 1));
       }
     };
+    const onError = () => {
+      const code = video.error?.code;
+      console.error(
+        "[StreamVault] Video failed to load:",
+        video.error?.message || `media error code ${code ?? "unknown"}`,
+      );
+      setHasError(true);
+      setIsPlaying(false);
+      setIsBuffering(false);
+    };
+    const onWaiting = () => setIsBuffering(true);
+    const onPlaying = () => setIsBuffering(false);
+    const onCanPlay = () => setIsBuffering(false);
 
     video.addEventListener("play", onPlay);
     video.addEventListener("pause", onPause);
@@ -89,6 +117,10 @@ export default function VideoPlayer({ src, poster, onFirstPlay }: VideoPlayerPro
     video.addEventListener("loadedmetadata", onLoadedMetadata);
     video.addEventListener("volumechange", onVolumeChange);
     video.addEventListener("progress", onProgress);
+    video.addEventListener("error", onError);
+    video.addEventListener("waiting", onWaiting);
+    video.addEventListener("playing", onPlaying);
+    video.addEventListener("canplay", onCanPlay);
 
     return () => {
       video.removeEventListener("play", onPlay);
@@ -97,6 +129,10 @@ export default function VideoPlayer({ src, poster, onFirstPlay }: VideoPlayerPro
       video.removeEventListener("loadedmetadata", onLoadedMetadata);
       video.removeEventListener("volumechange", onVolumeChange);
       video.removeEventListener("progress", onProgress);
+      video.removeEventListener("error", onError);
+      video.removeEventListener("waiting", onWaiting);
+      video.removeEventListener("playing", onPlaying);
+      video.removeEventListener("canplay", onCanPlay);
     };
   }, [hasStartedOnce, onFirstPlay]);
 
@@ -169,6 +205,36 @@ export default function VideoPlayer({ src, poster, onFirstPlay }: VideoPlayerPro
 
   const VolumeIcon = muted || volume === 0 ? VolumeX : volume < 0.5 ? Volume1 : Volume2;
 
+  // A missing/blank source or a failed load renders a contained fallback —
+  // the surrounding page (title, description, related videos) stays usable.
+  if (!hasValidSource || hasError) {
+    return (
+      <div className="flex aspect-video w-full flex-col items-center justify-center gap-3 rounded-xl border border-border bg-black text-center">
+        <VideoOff className="h-10 w-10 text-muted-foreground" />
+        <div>
+          <p className="text-sm font-medium text-foreground">Video unavailable</p>
+          <p className="mt-1 px-4 text-xs text-muted-foreground">
+            {hasValidSource
+              ? "This video could not be played. It may have been moved, removed, or your connection dropped."
+              : "This video has no playable source file."}
+          </p>
+        </div>
+        {hasValidSource && (
+          <button
+            onClick={() => {
+              setHasError(false);
+              videoRef.current?.load();
+            }}
+            className="inline-flex h-9 items-center gap-2 rounded-lg border border-border px-4 text-xs font-medium transition-colors hover:bg-accent"
+          >
+            <RotateCw className="h-3.5 w-3.5" />
+            Try again
+          </button>
+        )}
+      </div>
+    );
+  }
+
   return (
     <div
       ref={containerRef}
@@ -184,8 +250,15 @@ export default function VideoPlayer({ src, poster, onFirstPlay }: VideoPlayerPro
         autoPlay={false}
         muted={false}
         playsInline
+        preload="metadata"
         onClick={togglePlay}
       />
+
+      {isBuffering && isPlaying && (
+        <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
+          <Loader2 className="h-10 w-10 animate-spin text-white/80" />
+        </div>
+      )}
 
       {!isPlaying && (
         <button

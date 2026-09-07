@@ -64,6 +64,32 @@ Open http://localhost:5173.
 Build for production with `npm run build` (runs `tsc -b && vite build`);
 preview the production build with `npm run preview`.
 
+## 4b. Deploying to Vercel
+
+Vercel auto-detects Vite, so no build settings need changing (Build Command
+`npm run build`, Output Directory `dist`).
+
+**You must set the environment variables in Vercel, then redeploy:**
+
+1. Project → Settings → **Environment Variables**, add both:
+   - `VITE_SUPABASE_URL`
+   - `VITE_SUPABASE_PUBLISHABLE_KEY`
+
+   Tick **Production**, **Preview** and **Development**.
+2. Deployments → ⋯ → **Redeploy**.
+
+> ⚠️ **These are build-time values.** Vite inlines every `VITE_*` variable
+> into the bundle during `npm run build`. Adding them in Vercel *without*
+> redeploying changes nothing — the already-built bundle still has them
+> missing. If they are absent at build time the app now renders an explicit
+> "Configuration required" screen naming the missing variables, rather than
+> failing silently.
+
+`vercel.json` in the repo provides the SPA rewrite so that deep links and
+refreshes (`/login`, `/videos/<id>`, `/admin/...`) serve `index.html`
+instead of 404ing, while `/assets/*` continues to be served as static files
+with long-lived cache headers.
+
 ## 5. Create your first Super Admin
 
 There is **no hardcoded admin password** anywhere in this app. To create your

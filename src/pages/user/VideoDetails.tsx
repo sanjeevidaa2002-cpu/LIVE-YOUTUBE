@@ -8,6 +8,7 @@ import { useAuth } from "@/contexts/AuthContext";
 import VideoPlayer from "@/components/VideoPlayer";
 import VideoCard from "@/components/VideoCard";
 import EmptyState from "@/components/EmptyState";
+import ErrorState from "@/components/ErrorState";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -19,32 +20,58 @@ export default function VideoDetails() {
 
   const [video, setVideo] = useState<VideoWithRelations | null | undefined>(undefined);
   const [related, setRelated] = useState<VideoWithRelations[]>([]);
+  const [loadError, setLoadError] = useState<string | null>(null);
+  const [reloadKey, setReloadKey] = useState(0);
 
   useEffect(() => {
     if (!id) return;
     let mounted = true;
     setVideo(undefined);
+    setLoadError(null);
+
     getVideoById(id)
-      .then(async (v) => {
+      .then((v) => {
         if (!mounted) return;
         setVideo(v);
+
+        // Related videos load independently: a failure here must not
+        // discard the video we already fetched successfully.
         if (v) {
-          const relatedVideos = await getRelatedVideos(v.category_id, v.id);
-          if (mounted) setRelated(relatedVideos);
+          getRelatedVideos(v.category_id, v.id)
+            .then((r) => mounted && setRelated(r))
+            .catch((err: unknown) => {
+              console.error("[StreamVault] Failed to load related videos:", err);
+              if (mounted) setRelated([]);
+            });
         }
       })
-      .catch((err) => {
-        console.error(err);
-        if (mounted) setVideo(null);
+      .catch((err: unknown) => {
+        const message =
+          err instanceof Error ? err.message : "Please check your connection and try again.";
+        console.error("[StreamVault] Failed to load video:", message);
+        if (mounted) setLoadError(message);
       });
+
     return () => {
       mounted = false;
     };
-  }, [id]);
+  }, [id, reloadKey]);
 
   function handleFirstPlay() {
     if (!id || !isAuthenticated) return;
     recordVideoView(id).catch((err) => console.error("Failed to record view:", err));
+  }
+
+  if (loadError) {
+    return (
+      <div className="container py-16">
+        <ErrorState
+          title="Couldn't load this video"
+          message={loadError}
+          onRetry={() => setReloadKey((n) => n + 1)}
+        />
+      </div>
+    );
   }
 
   if (video === undefined) {
