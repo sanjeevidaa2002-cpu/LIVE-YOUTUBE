@@ -33,6 +33,14 @@ export const hasMalformedSupabaseUrl =
 export const isSupabaseConfigured =
   missingSupabaseEnvVars.length === 0 && !hasMalformedSupabaseUrl;
 
+// Boot diagnostic. Prints only whether each value is present — never the
+// values themselves — so a production deployment can be checked from the
+// browser console without disclosing anything.
+console.info(
+  `[StreamVault] Supabase URL configured: ${supabaseUrl ? "YES" : "NO"}\n` +
+    `[StreamVault] Supabase publishable key configured: ${supabaseAnonKey ? "YES" : "NO"}`,
+);
+
 if (!isSupabaseConfigured) {
   // Log for developers, but DO NOT throw. A module-level throw here would
   // propagate through the import chain (supabase -> AuthContext -> App ->
