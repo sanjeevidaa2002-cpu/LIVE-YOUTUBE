@@ -10,7 +10,7 @@ import {
   MAX_VIDEO_SIZE_BYTES,
   formatBytes,
 } from "@/lib/utils";
-import type { Category, VideoStatus, VideoWithRelations } from "@/types";
+import type { Category, VideoStatus, VideoVisibility, VideoWithRelations } from "@/types";
 import {
   buildStoragePath,
   deleteFile,
@@ -18,6 +18,7 @@ import {
   uploadFileWithProgress,
 } from "@/services/storageService";
 import { createVideo, updateVideo } from "@/services/videoService";
+import { logActivity } from "@/services/activityService";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -64,6 +65,8 @@ export default function VideoForm({ mode, video, categories, redirectTo }: Video
   const [categoryId, setCategoryId] = useState(video?.category_id ?? "");
   const [status, setStatus] = useState<VideoStatus>(video?.status ?? "published");
   const [isFeatured, setIsFeatured] = useState(video?.is_featured ?? false);
+  const [visibility, setVisibility] = useState<VideoVisibility>(video?.visibility ?? "public");
+  const [tagsInput, setTagsInput] = useState((video?.tags ?? []).join(", "));
 
   const [videoFile, setVideoFile] = useState<File | null>(null);
   const [thumbnailFile, setThumbnailFile] = useState<File | null>(null);
@@ -161,8 +164,13 @@ export default function VideoForm({ mode, video, categories, redirectTo }: Video
         ? getPublicUrl("thumbnails", uploadedThumbnailPath)
         : null;
 
+      const tags = tagsInput
+        .split(",")
+        .map((t) => t.trim())
+        .filter(Boolean);
+
       if (mode === "create") {
-        await createVideo({
+        const created = await createVideo({
           title,
           description: description || null,
           categoryId: categoryId || null,
@@ -171,7 +179,14 @@ export default function VideoForm({ mode, video, categories, redirectTo }: Video
           duration,
           isFeatured,
           status,
+          visibility,
+          tags,
           uploadedBy: user.id,
+        });
+        await logActivity("video.uploaded", {
+          targetType: "video",
+          targetId: created.id,
+          details: { title, status, visibility },
         });
       } else if (video) {
         await updateVideo(video.id, {
@@ -183,6 +198,13 @@ export default function VideoForm({ mode, video, categories, redirectTo }: Video
           duration,
           isFeatured,
           status,
+          visibility,
+          tags,
+        });
+        await logActivity("video.edited", {
+          targetType: "video",
+          targetId: video.id,
+          details: { title, status, visibility },
         });
 
         // Clean up replaced files now that the DB row points elsewhere.
@@ -276,9 +298,41 @@ export default function VideoForm({ mode, video, categories, redirectTo }: Video
                 <SelectContent>
                   <SelectItem value="published">Published</SelectItem>
                   <SelectItem value="draft">Draft</SelectItem>
+                  <SelectItem value="unpublished">Unpublished</SelectItem>
                   <SelectItem value="archived">Archived</SelectItem>
                 </SelectContent>
               </Select>
+            </div>
+          </div>
+
+          <div className="grid gap-4 sm:grid-cols-2">
+            <div className="space-y-2">
+              <Label>Visibility</Label>
+              <Select
+                value={visibility}
+                onValueChange={(v) => setVisibility(v as VideoVisibility)}
+                disabled={isBusy}
+              >
+                <SelectTrigger>
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="public">Public — any signed-in viewer</SelectItem>
+                  <SelectItem value="preview">Preview — teaser, any signed-in viewer</SelectItem>
+                  <SelectItem value="private">Private — admins and the uploader only</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="tags">Tags</Label>
+              <Input
+                id="tags"
+                value={tagsInput}
+                onChange={(e) => setTagsInput(e.target.value)}
+                placeholder="comma, separated, tags"
+                disabled={isBusy}
+              />
             </div>
           </div>
 

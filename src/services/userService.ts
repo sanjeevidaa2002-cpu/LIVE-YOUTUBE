@@ -1,20 +1,26 @@
 import { supabase } from "@/lib/supabase";
 import type { Profile, UserRole } from "@/types";
 
+export type UserStatusFilter = "all" | "active" | "inactive";
+
 export interface ListUsersOptions {
   page?: number;
   pageSize?: number;
   search?: string;
   role?: UserRole | "all";
+  status?: UserStatusFilter;
 }
 
 export async function listUsers(options: ListUsersOptions = {}) {
-  const { page = 1, pageSize = 20, search, role = "all" } = options;
+  const { page = 1, pageSize = 20, search, role = "all", status = "all" } = options;
 
   let query = supabase.from("profiles").select("*", { count: "exact" });
 
   if (role !== "all") {
     query = query.eq("role", role);
+  }
+  if (status !== "all") {
+    query = query.eq("is_active", status === "active");
   }
   if (search && search.trim()) {
     const term = search.trim().replace(/[%_]/g, "");
@@ -80,4 +86,41 @@ export async function getUserCounts() {
     totalManagers: totalManagers ?? 0,
     totalAdmins: totalAdmins ?? 0,
   };
+}
+
+/** Users registered since the given ISO timestamp (dashboard "new users"). */
+export async function countUsersSince(sinceIso: string): Promise<number> {
+  const { count, error } = await supabase
+    .from("profiles")
+    .select("*", { count: "exact", head: true })
+    .gte("created_at", sinceIso);
+  if (error) throw new Error(error.message);
+  return count ?? 0;
+}
+
+/** Records that the signed-in user is active right now. Best effort. */
+export async function touchLastActive(): Promise<void> {
+  const { error } = await supabase.rpc("touch_last_active");
+  if (error) console.warn("[StreamVault] touch_last_active failed:", error.message);
+}
+
+export async function getUserById(id: string): Promise<Profile | null> {
+  const { data, error } = await supabase
+    .from("profiles")
+    .select("*")
+    .eq("id", id)
+    .maybeSingle();
+  if (error) throw new Error(error.message);
+  return data;
+}
+
+/** How many active admins exist — used to protect the last Super Admin. */
+export async function countActiveAdmins(): Promise<number> {
+  const { count, error } = await supabase
+    .from("profiles")
+    .select("*", { count: "exact", head: true })
+    .eq("role", "admin")
+    .eq("is_active", true);
+  if (error) throw new Error(error.message);
+  return count ?? 0;
 }

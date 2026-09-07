@@ -5,6 +5,7 @@ import { useAuth } from "@/contexts/AuthContext";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { analytics } from "@/lib/analytics";
 
 export default function Signup() {
   const { signUp } = useAuth();
@@ -40,6 +41,7 @@ export default function Signup() {
       return;
     }
 
+    analytics.signup();
     setSuccess(true);
     setTimeout(() => navigate("/login"), 2500);
   }

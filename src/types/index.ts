@@ -1,10 +1,29 @@
-import type { CategoryRow, ProfileRow, UserRole, VideoRow, VideoStatus } from "./database";
+import type {
+  AdminActivityLogRow,
+  AdsenseSettingsRow,
+  AnalyticsSettingsRow,
+  CategoryRow,
+  ProfileRow,
+  SiteSettingsRow,
+  UserRole,
+  VideoRow,
+  VideoStatus,
+  VideoVisibility,
+} from "./database";
 
-export type { UserRole, VideoStatus };
+export type { UserRole, VideoStatus, VideoVisibility };
 
 export type Profile = ProfileRow;
 export type Category = CategoryRow;
 export type Video = VideoRow;
+export type SiteSettings = SiteSettingsRow;
+export type AnalyticsSettings = AnalyticsSettingsRow;
+export type AdsenseSettings = AdsenseSettingsRow;
+export type AdminActivityLog = AdminActivityLogRow;
+
+export interface AdminActivityLogWithAdmin extends AdminActivityLog {
+  admin: Pick<Profile, "id" | "full_name" | "email"> | null;
+}
 
 export interface VideoWithRelations extends Video {
   category: Pick<Category, "id" | "name" | "slug"> | null;
@@ -23,6 +42,8 @@ export interface VideoFormValues {
   categoryId: string;
   isFeatured: boolean;
   status: VideoStatus;
+  visibility: VideoVisibility;
+  tags: string[];
   videoFile: File | null;
   thumbnailFile: File | null;
 }

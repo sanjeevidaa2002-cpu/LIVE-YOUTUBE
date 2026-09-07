@@ -8,6 +8,7 @@ import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/lib/supabase";
+import { analytics } from "@/lib/analytics";
 
 export default function Login() {
   const { signIn } = useAuth();
@@ -54,6 +55,7 @@ export default function Login() {
       }
     }
 
+    analytics.login();
     toast({ title: "Welcome back!", description: "You're now signed in." });
 
     if (from) {

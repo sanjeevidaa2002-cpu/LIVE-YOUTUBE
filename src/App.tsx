@@ -1,7 +1,10 @@
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { AuthProvider } from "@/contexts/AuthContext";
+import { SiteSettingsProvider } from "@/contexts/SiteSettingsContext";
 import { Toaster } from "@/components/ui/toaster";
 import ProtectedRoute from "@/components/ProtectedRoute";
+import AdminRoute from "@/components/AdminRoute";
+import AnalyticsLoader from "@/components/AnalyticsLoader";
 
 import MainLayout from "@/layouts/MainLayout";
 import AuthLayout from "@/layouts/AuthLayout";
@@ -23,11 +26,15 @@ import AdminDashboard from "@/pages/admin/Dashboard";
 import AdminVideos from "@/pages/admin/Videos";
 import AdminUploadVideo from "@/pages/admin/UploadVideo";
 import AdminEditVideo from "@/pages/admin/EditVideo";
+import AdminVideoPreview from "@/pages/admin/VideoPreview";
 import AdminUsers from "@/pages/admin/Users";
 import AdminManagers from "@/pages/admin/Managers";
 import AdminCategories from "@/pages/admin/Categories";
 import AdminAnalytics from "@/pages/admin/Analytics";
+import AdminAdSense from "@/pages/admin/AdSense";
 import AdminSettings from "@/pages/admin/Settings";
+import AdminActivityLog from "@/pages/admin/ActivityLog";
+import AdminProfile from "@/pages/admin/Profile";
 
 import ManagerDashboard from "@/pages/manager/Dashboard";
 import ManagerVideos from "@/pages/manager/Videos";
@@ -42,59 +49,71 @@ export default function App() {
   return (
     <BrowserRouter>
       <AuthProvider>
-        <Routes>
-          {/* Public / user-facing */}
-          <Route element={<MainLayout />}>
-            <Route path="/" element={<Home />} />
-            <Route path="/videos" element={<Videos />} />
-            <Route path="/videos/:id" element={<VideoDetails />} />
-            <Route path="/categories/:slug" element={<CategoryPage />} />
+        <SiteSettingsProvider>
+          <AnalyticsLoader />
+          <Routes>
+            {/* Public / user-facing */}
+            <Route element={<MainLayout />}>
+              <Route path="/" element={<Home />} />
+              <Route path="/videos" element={<Videos />} />
+              <Route path="/videos/:id" element={<VideoDetails />} />
+              <Route path="/categories/:slug" element={<CategoryPage />} />
 
-            <Route element={<ProtectedRoute allowedRoles={["user", "manager", "admin"]} />}>
-              <Route path="/profile" element={<Profile />} />
+              <Route element={<ProtectedRoute allowedRoles={["user", "manager", "admin"]} />}>
+                <Route path="/profile" element={<Profile />} />
+              </Route>
             </Route>
-          </Route>
 
-          {/* Auth */}
-          <Route element={<AuthLayout />}>
-            <Route path="/login" element={<Login />} />
-            <Route path="/signup" element={<Signup />} />
-            <Route path="/forgot-password" element={<ForgotPassword />} />
-            <Route path="/reset-password" element={<ResetPassword />} />
-          </Route>
-
-          <Route path="/account-disabled" element={<AccountDisabled />} />
-
-          {/* Admin */}
-          <Route element={<ProtectedRoute allowedRoles={["admin"]} />}>
-            <Route element={<AdminLayout />}>
-              <Route path="/admin" element={<AdminDashboard />} />
-              <Route path="/admin/videos" element={<AdminVideos />} />
-              <Route path="/admin/videos/upload" element={<AdminUploadVideo />} />
-              <Route path="/admin/videos/:id/edit" element={<AdminEditVideo />} />
-              <Route path="/admin/categories" element={<AdminCategories />} />
-              <Route path="/admin/users" element={<AdminUsers />} />
-              <Route path="/admin/managers" element={<AdminManagers />} />
-              <Route path="/admin/analytics" element={<AdminAnalytics />} />
-              <Route path="/admin/settings" element={<AdminSettings />} />
+            {/* Member auth */}
+            <Route element={<AuthLayout />}>
+              <Route path="/login" element={<Login />} />
+              <Route path="/signup" element={<Signup />} />
+              <Route path="/forgot-password" element={<ForgotPassword />} />
+              <Route path="/reset-password" element={<ResetPassword />} />
             </Route>
-          </Route>
 
-          {/* Manager */}
-          <Route element={<ProtectedRoute allowedRoles={["manager", "admin"]} />}>
-            <Route element={<ManagerLayout />}>
-              <Route path="/manager" element={<ManagerDashboard />} />
-              <Route path="/manager/videos" element={<ManagerVideos />} />
-              <Route path="/manager/videos/upload" element={<ManagerUploadVideo />} />
-              <Route path="/manager/videos/:id/edit" element={<ManagerEditVideo />} />
-              <Route path="/manager/profile" element={<ManagerProfile />} />
+            <Route path="/account-disabled" element={<AccountDisabled />} />
+
+            {/*
+              Admin. AdminRoute renders the dedicated administrator login
+              in place for anyone who is not a signed-in admin, so /admin
+              never shows the member login page.
+            */}
+            <Route element={<AdminRoute />}>
+              <Route element={<AdminLayout />}>
+                <Route path="/admin" element={<Navigate to="/admin/dashboard" replace />} />
+                <Route path="/admin/dashboard" element={<AdminDashboard />} />
+                <Route path="/admin/videos" element={<AdminVideos />} />
+                <Route path="/admin/videos/upload" element={<AdminUploadVideo />} />
+                <Route path="/admin/videos/:id/edit" element={<AdminEditVideo />} />
+                <Route path="/admin/videos/:id/preview" element={<AdminVideoPreview />} />
+                <Route path="/admin/categories" element={<AdminCategories />} />
+                <Route path="/admin/users" element={<AdminUsers />} />
+                <Route path="/admin/managers" element={<AdminManagers />} />
+                <Route path="/admin/analytics" element={<AdminAnalytics />} />
+                <Route path="/admin/adsense" element={<AdminAdSense />} />
+                <Route path="/admin/settings" element={<AdminSettings />} />
+                <Route path="/admin/activity" element={<AdminActivityLog />} />
+                <Route path="/admin/profile" element={<AdminProfile />} />
+              </Route>
             </Route>
-          </Route>
 
-          <Route path="/404" element={<NotFound />} />
-          <Route path="*" element={<Navigate to="/404" replace />} />
-        </Routes>
-        <Toaster />
+            {/* Manager */}
+            <Route element={<ProtectedRoute allowedRoles={["manager", "admin"]} />}>
+              <Route element={<ManagerLayout />}>
+                <Route path="/manager" element={<ManagerDashboard />} />
+                <Route path="/manager/videos" element={<ManagerVideos />} />
+                <Route path="/manager/videos/upload" element={<ManagerUploadVideo />} />
+                <Route path="/manager/videos/:id/edit" element={<ManagerEditVideo />} />
+                <Route path="/manager/profile" element={<ManagerProfile />} />
+              </Route>
+            </Route>
+
+            <Route path="/404" element={<NotFound />} />
+            <Route path="*" element={<Navigate to="/404" replace />} />
+          </Routes>
+          <Toaster />
+        </SiteSettingsProvider>
       </AuthProvider>
     </BrowserRouter>
   );
