@@ -3,9 +3,11 @@ import { FolderTree, Loader2, Pencil, Plus, Trash2 } from "lucide-react";
 import {
   createCategory,
   deleteCategory,
+  getCategoryVideoCounts,
   listCategories,
   updateCategory,
 } from "@/services/categoryService";
+import { logActivity } from "@/services/activityService";
 import type { Category } from "@/types";
 import { useToast } from "@/hooks/use-toast";
 import { Button } from "@/components/ui/button";
@@ -23,10 +25,12 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { Skeleton } from "@/components/ui/skeleton";
 import EmptyState from "@/components/EmptyState";
 import ConfirmDialog from "@/components/ConfirmDialog";
+import { formatRelativeDate } from "@/lib/utils";
 
 export default function AdminCategories() {
   const { toast } = useToast();
   const [categories, setCategories] = useState<Category[]>([]);
+  const [videoCounts, setVideoCounts] = useState<Record<string, number>>({});
   const [loading, setLoading] = useState(true);
 
   const [dialogOpen, setDialogOpen] = useState(false);
@@ -41,9 +45,18 @@ export default function AdminCategories() {
   async function load() {
     setLoading(true);
     try {
-      setCategories(await listCategories());
+      const [cats, counts] = await Promise.all([
+        listCategories(),
+        getCategoryVideoCounts().catch(() => ({}) as Record<string, number>),
+      ]);
+      setCategories(cats);
+      setVideoCounts(counts);
     } catch (err) {
-      toast({ variant: "destructive", title: "Failed to load categories" });
+      toast({
+        variant: "destructive",
+        title: "Failed to load categories",
+        description: err instanceof Error ? err.message : undefined,
+      });
     } finally {
       setLoading(false);
     }
@@ -74,9 +87,19 @@ export default function AdminCategories() {
     try {
       if (editing) {
         await updateCategory(editing.id, { name, description });
+        await logActivity("category.edited", {
+          targetType: "category",
+          targetId: editing.id,
+          details: { name },
+        });
         toast({ title: "Category updated" });
       } else {
-        await createCategory({ name, description });
+        const created = await createCategory({ name, description });
+        await logActivity("category.created", {
+          targetType: "category",
+          targetId: created.id,
+          details: { name },
+        });
         toast({ title: "Category created" });
       }
       setDialogOpen(false);
@@ -97,6 +120,11 @@ export default function AdminCategories() {
     setDeleting(true);
     try {
       await deleteCategory(deleteTarget.id);
+      await logActivity("category.deleted", {
+        targetType: "category",
+        targetId: deleteTarget.id,
+        details: { name: deleteTarget.name },
+      });
       toast({ title: "Category deleted" });
       setDeleteTarget(null);
       load();
@@ -135,6 +163,8 @@ export default function AdminCategories() {
                 <TableHead>Name</TableHead>
                 <TableHead>Slug</TableHead>
                 <TableHead>Description</TableHead>
+                <TableHead>Videos</TableHead>
+                <TableHead>Created</TableHead>
                 <TableHead className="text-right">Actions</TableHead>
               </TableRow>
             </TableHeader>
@@ -145,6 +175,10 @@ export default function AdminCategories() {
                   <TableCell className="text-muted-foreground">{c.slug}</TableCell>
                   <TableCell className="max-w-xs truncate text-muted-foreground">
                     {c.description}
+                  </TableCell>
+                  <TableCell>{videoCounts[c.id] ?? 0}</TableCell>
+                  <TableCell className="whitespace-nowrap text-muted-foreground">
+                    {formatRelativeDate(c.created_at)}
                   </TableCell>
                   <TableCell className="text-right">
                     <div className="flex justify-end gap-1">

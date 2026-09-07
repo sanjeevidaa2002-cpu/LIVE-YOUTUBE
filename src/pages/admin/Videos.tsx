@@ -9,7 +9,7 @@ export default function AdminVideos() {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold">All Videos</h1>
-          <p className="text-muted-foreground">Manage every video across the platform.</p>
+          <p className="text-muted-foreground">Every video on the platform — status, visibility, and files.</p>
         </div>
         <Button asChild>
           <Link to="/admin/videos/upload">
@@ -18,7 +18,7 @@ export default function AdminVideos() {
           </Link>
         </Button>
       </div>
-      <VideoManagementTable basePath="/admin/videos" showUploaderColumn />
+      <VideoManagementTable basePath="/admin/videos" showUploaderColumn isAdmin />
     </div>
   );
 }

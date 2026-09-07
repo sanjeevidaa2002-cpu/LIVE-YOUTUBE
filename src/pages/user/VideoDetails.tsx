@@ -9,6 +9,8 @@ import VideoPlayer from "@/components/VideoPlayer";
 import VideoCard from "@/components/VideoCard";
 import EmptyState from "@/components/EmptyState";
 import ErrorState from "@/components/ErrorState";
+import AdSlot from "@/components/AdSlot";
+import { analytics } from "@/lib/analytics";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -58,7 +60,9 @@ export default function VideoDetails() {
   }, [id, reloadKey]);
 
   function handleFirstPlay() {
-    if (!id || !isAuthenticated) return;
+    if (!id) return;
+    if (video) analytics.videoPlay(video.id, video.title);
+    if (!isAuthenticated) return;
     recordVideoView(id).catch((err) => console.error("Failed to record view:", err));
   }
 
@@ -115,6 +119,8 @@ export default function VideoDetails() {
       <div className="lg:col-span-2">
         <VideoPlayer src={video.video_path} poster={video.thumbnail_url} onFirstPlay={handleFirstPlay} />
 
+        <AdSlot placement="below_player" className="mt-4" />
+
         <h1 className="mt-4 text-xl font-bold sm:text-2xl">{video.title}</h1>
 
         <div className="mt-2 flex flex-wrap items-center gap-3 text-sm text-muted-foreground">
@@ -152,6 +158,8 @@ export default function VideoDetails() {
         <h2 className="mb-3 flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">
           <PlayCircle className="h-4 w-4" /> Related Videos
         </h2>
+        <AdSlot placement="video_details" className="mb-4" />
+
         {related.length === 0 ? (
           <p className="text-sm text-muted-foreground">No related videos found.</p>
         ) : (

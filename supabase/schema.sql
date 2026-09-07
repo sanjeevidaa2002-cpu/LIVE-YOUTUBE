@@ -26,6 +26,7 @@ create table if not exists public.profiles (
   avatar_url    text,
   role          text not null default 'user' check (role in ('user', 'manager', 'admin')),
   is_active     boolean not null default true,
+  last_active_at timestamptz,
   created_at    timestamptz not null default now(),
   updated_at    timestamptz not null default now()
 );
@@ -55,7 +56,11 @@ create table if not exists public.videos (
   duration        integer,
   category_id     uuid references public.categories(id) on delete set null,
   uploaded_by     uuid references public.profiles(id) on delete set null,
-  status          text not null default 'published' check (status in ('published', 'draft', 'archived')),
+  status          text not null default 'published'
+                  check (status in ('draft', 'published', 'unpublished', 'archived')),
+  visibility      text not null default 'public'
+                  check (visibility in ('public', 'private', 'preview')),
+  tags            text[] not null default '{}',
   is_featured     boolean not null default false,
   views_count     bigint not null default 0,
   created_at      timestamptz not null default now(),
@@ -300,12 +305,16 @@ create policy "categories_delete_admin_only"
 -- - Manager can read/write only videos they themselves uploaded.
 -- - Normal users can never insert/update/delete.
 -- ---------------------------------------------------------------------
+-- public  + published -> any signed-in viewer
+-- preview + published -> any signed-in viewer (teaser content)
+-- private             -> admin or the uploader only, whatever the status
+-- draft/unpublished/archived -> admin or uploader only
 drop policy if exists "videos_select_published_or_owner_or_admin" on public.videos;
 create policy "videos_select_published_or_owner_or_admin"
   on public.videos for select
   to authenticated
   using (
-    status = 'published'
+    (status = 'published' and visibility in ('public', 'preview'))
     or public.is_admin()
     or uploaded_by = auth.uid()
   );
@@ -486,6 +495,242 @@ insert into public.categories (name, slug, description) values
   ('Education', 'education', 'Courses, lectures, and how-tos'),
   ('Entertainment', 'entertainment', 'Movies, shows, and comedy')
 on conflict (slug) do nothing;
+
+
+-- =====================================================================
+-- 10. ADMIN CONTROL PANEL
+-- =====================================================================
+-- Settings tables, admin activity log, and supporting functions. These
+-- are also shipped as supabase/migrations/001_admin_panel.sql for
+-- databases created before the admin panel existed.
+-- =====================================================================
+
+-- ---------------------------------------------------------------------
+-- 10.1 Settings tables (each holds exactly one row, id = 1)
+-- ---------------------------------------------------------------------
+create table if not exists public.site_settings (
+  id                        integer primary key default 1 check (id = 1),
+  site_name                 text not null default 'StreamVault',
+  logo_url                  text,
+  favicon_url               text,
+  description               text default 'A modern video streaming platform.',
+  default_theme             text not null default 'dark' check (default_theme in ('dark', 'light')),
+  maintenance_mode          boolean not null default false,
+  allow_signup              boolean not null default true,
+  default_video_visibility  text not null default 'public'
+                            check (default_video_visibility in ('public', 'private', 'preview')),
+  enable_analytics          boolean not null default false,
+  enable_adsense            boolean not null default false,
+  updated_at                timestamptz not null default now()
+);
+
+create table if not exists public.analytics_settings (
+  id                    integer primary key default 1 check (id = 1),
+  ga_measurement_id     text,
+  enabled               boolean not null default false,
+  updated_at            timestamptz not null default now()
+);
+
+create table if not exists public.adsense_settings (
+  id                        integer primary key default 1 check (id = 1),
+  publisher_id              text,
+  ad_slot_video_list        text,
+  ad_slot_between_cards     text,
+  ad_slot_video_details     text,
+  ad_slot_below_player      text,
+  enabled                   boolean not null default false,
+  show_on_video_list        boolean not null default true,
+  show_between_cards        boolean not null default false,
+  show_on_video_details     boolean not null default true,
+  show_below_player         boolean not null default false,
+  updated_at                timestamptz not null default now()
+);
+
+-- Seed the singleton rows if absent (no-op when they already exist).
+insert into public.site_settings (id) values (1) on conflict (id) do nothing;
+insert into public.analytics_settings (id) values (1) on conflict (id) do nothing;
+insert into public.adsense_settings (id) values (1) on conflict (id) do nothing;
+
+drop trigger if exists set_site_settings_updated_at on public.site_settings;
+create trigger set_site_settings_updated_at
+  before update on public.site_settings
+  for each row execute function public.set_updated_at();
+
+drop trigger if exists set_analytics_settings_updated_at on public.analytics_settings;
+create trigger set_analytics_settings_updated_at
+  before update on public.analytics_settings
+  for each row execute function public.set_updated_at();
+
+drop trigger if exists set_adsense_settings_updated_at on public.adsense_settings;
+create trigger set_adsense_settings_updated_at
+  before update on public.adsense_settings
+  for each row execute function public.set_updated_at();
+
+-- ---------------------------------------------------------------------
+-- 10.2 Admin activity log
+-- ---------------------------------------------------------------------
+create table if not exists public.admin_activity_logs (
+  id            uuid primary key default gen_random_uuid(),
+  admin_id      uuid references public.profiles(id) on delete set null,
+  action        text not null,
+  target_type   text,
+  target_id     text,
+  details       jsonb not null default '{}'::jsonb,
+  created_at    timestamptz not null default now()
+);
+
+create index if not exists idx_admin_activity_created_at on public.admin_activity_logs (created_at desc);
+create index if not exists idx_admin_activity_admin_id   on public.admin_activity_logs (admin_id);
+create index if not exists idx_admin_activity_action     on public.admin_activity_logs (action);
+
+-- =====================================================================
+-- 10.3 Row level security
+-- =====================================================================
+alter table public.site_settings       enable row level security;
+alter table public.analytics_settings  enable row level security;
+alter table public.adsense_settings    enable row level security;
+alter table public.admin_activity_logs enable row level security;
+
+-- ---------------------------------------------------------------------
+-- 10.3.1 Settings: readable by any signed-in visitor (the app needs the site
+--     name, GA id and AdSense id to render). Writable by admins only.
+--     Nothing secret is stored in these tables — a GA measurement id and
+--     an AdSense publisher id are both public identifiers that appear in
+--     page source on every site that uses them.
+-- ---------------------------------------------------------------------
+drop policy if exists "site_settings_select_authenticated" on public.site_settings;
+create policy "site_settings_select_authenticated"
+  on public.site_settings for select to authenticated using (true);
+
+drop policy if exists "site_settings_write_admin_only" on public.site_settings;
+create policy "site_settings_write_admin_only"
+  on public.site_settings for update to authenticated
+  using (public.is_admin()) with check (public.is_admin());
+
+drop policy if exists "analytics_settings_select_authenticated" on public.analytics_settings;
+create policy "analytics_settings_select_authenticated"
+  on public.analytics_settings for select to authenticated using (true);
+
+drop policy if exists "analytics_settings_write_admin_only" on public.analytics_settings;
+create policy "analytics_settings_write_admin_only"
+  on public.analytics_settings for update to authenticated
+  using (public.is_admin()) with check (public.is_admin());
+
+drop policy if exists "adsense_settings_select_authenticated" on public.adsense_settings;
+create policy "adsense_settings_select_authenticated"
+  on public.adsense_settings for select to authenticated using (true);
+
+drop policy if exists "adsense_settings_write_admin_only" on public.adsense_settings;
+create policy "adsense_settings_write_admin_only"
+  on public.adsense_settings for update to authenticated
+  using (public.is_admin()) with check (public.is_admin());
+
+-- ---------------------------------------------------------------------
+-- 10.3.2 Activity log: admins only, and an admin may only write rows
+--     attributed to themselves. No update/delete policy exists, so the
+--     log is append-only from the client.
+-- ---------------------------------------------------------------------
+drop policy if exists "admin_activity_select_admin_only" on public.admin_activity_logs;
+create policy "admin_activity_select_admin_only"
+  on public.admin_activity_logs for select to authenticated
+  using (public.is_admin());
+
+drop policy if exists "admin_activity_insert_admin_only" on public.admin_activity_logs;
+create policy "admin_activity_insert_admin_only"
+  on public.admin_activity_logs for insert to authenticated
+  with check (public.is_admin() and admin_id = auth.uid());
+
+-- ---------------------------------------------------------------------
+-- 10.3.3 videos: fold visibility into the read policy.
+--
+--     public  + published -> any signed-in viewer
+--     preview + published -> any signed-in viewer (teaser content)
+--     private             -> admin or the uploader only, any status
+--     draft/unpublished/archived -> admin or uploader only
+-- ---------------------------------------------------------------------
+drop policy if exists "videos_select_published_or_owner_or_admin" on public.videos;
+create policy "videos_select_published_or_owner_or_admin"
+  on public.videos for select
+  to authenticated
+  using (
+    (status = 'published' and visibility in ('public', 'preview'))
+    or public.is_admin()
+    or uploaded_by = auth.uid()
+  );
+
+-- Insert/update/delete policies are unchanged: admins may write anything,
+-- managers only rows they uploaded, normal users nothing at all.
+
+-- =====================================================================
+-- 10.4 Category video counts (used by the admin Categories page)
+-- =====================================================================
+create or replace function public.category_video_counts()
+returns table (category_id uuid, video_count bigint)
+language sql
+stable
+security invoker
+set search_path = public
+as $$
+  select category_id, count(*)::bigint
+  from public.videos
+  where category_id is not null
+  group by category_id;
+$$;
+
+grant execute on function public.category_video_counts() to authenticated;
+
+-- =====================================================================
+-- 10.5 Touch last_active_at for the calling user
+-- =====================================================================
+create or replace function public.touch_last_active()
+returns void
+language plpgsql
+security definer
+set search_path = public
+as $$
+begin
+  if auth.uid() is not null then
+    update public.profiles set last_active_at = now() where id = auth.uid();
+  end if;
+end;
+$$;
+
+grant execute on function public.touch_last_active() to authenticated;
+
+-- =====================================================================
+-- 10.6 Guard: never leave the platform without a Super Admin
+-- =====================================================================
+create or replace function public.prevent_last_admin_removal()
+returns trigger
+language plpgsql
+security definer
+set search_path = public
+as $$
+declare
+  remaining_admins integer;
+begin
+  -- Only relevant when an account stops being a usable admin.
+  if (old.role = 'admin' and new.role <> 'admin')
+     or (old.role = 'admin' and old.is_active and not new.is_active) then
+    select count(*) into remaining_admins
+    from public.profiles
+    where role = 'admin' and is_active and id <> old.id;
+
+    if remaining_admins = 0 then
+      raise exception
+        'Refusing to remove the last active Super Admin. Promote another admin first.';
+    end if;
+  end if;
+  return new;
+end;
+$$;
+
+drop trigger if exists prevent_last_admin_removal_trigger on public.profiles;
+create trigger prevent_last_admin_removal_trigger
+  before update on public.profiles
+  for each row execute function public.prevent_last_admin_removal();
+
+-- =====================================================================
 
 -- =====================================================================
 -- 9. PROMOTE THE FIRST SUPER ADMIN

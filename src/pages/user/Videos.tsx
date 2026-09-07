@@ -11,6 +11,8 @@ import EmptyState from "@/components/EmptyState";
 import ErrorState from "@/components/ErrorState";
 import SearchBar from "@/components/SearchBar";
 import Pagination from "@/components/Pagination";
+import AdSlot from "@/components/AdSlot";
+import { analytics } from "@/lib/analytics";
 import {
   Select,
   SelectContent,
@@ -82,6 +84,10 @@ export default function Videos() {
     };
   }, [page, debouncedSearch, categoryId, reloadKey]);
 
+  useEffect(() => {
+    if (debouncedSearch.trim()) analytics.search(debouncedSearch.trim());
+  }, [debouncedSearch]);
+
   return (
     <div className="container py-8">
       <h1 className="mb-6 text-2xl font-bold">Browse Videos</h1>
@@ -102,6 +108,8 @@ export default function Videos() {
           </SelectContent>
         </Select>
       </div>
+
+      <AdSlot placement="video_list" className="mb-6" />
 
       {loading ? (
         <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">

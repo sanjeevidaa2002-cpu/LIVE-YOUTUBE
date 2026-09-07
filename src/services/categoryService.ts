@@ -52,3 +52,14 @@ export async function deleteCategory(id: string): Promise<void> {
   const { error } = await supabase.from("categories").delete().eq("id", id);
   if (error) throw new Error(error.message);
 }
+
+/** Video counts per category id, for the admin Categories page. */
+export async function getCategoryVideoCounts(): Promise<Record<string, number>> {
+  const { data, error } = await supabase.rpc("category_video_counts");
+  if (error) throw new Error(error.message);
+  const counts: Record<string, number> = {};
+  for (const row of (data ?? []) as { category_id: string; video_count: number }[]) {
+    counts[row.category_id] = Number(row.video_count);
+  }
+  return counts;
+}

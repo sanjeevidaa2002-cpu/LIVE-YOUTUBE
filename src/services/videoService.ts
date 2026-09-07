@@ -1,5 +1,10 @@
 import { supabase } from "@/lib/supabase";
-import type { PaginatedResult, VideoStatus, VideoWithRelations } from "@/types";
+import type {
+  PaginatedResult,
+  VideoStatus,
+  VideoVisibility,
+  VideoWithRelations,
+} from "@/types";
 
 const VIDEO_SELECT = `
   *,
@@ -14,6 +19,7 @@ export interface ListVideosOptions {
   categorySlug?: string;
   categoryId?: string;
   status?: VideoStatus | "all";
+  visibility?: VideoVisibility | "all";
   featuredOnly?: boolean;
   uploaderId?: string;
   orderBy?: "created_at" | "views_count";
@@ -30,6 +36,7 @@ export async function listVideos(
     categorySlug,
     categoryId,
     status = "published",
+    visibility = "all",
     featuredOnly,
     uploaderId,
     orderBy = "created_at",
@@ -40,6 +47,9 @@ export async function listVideos(
 
   if (status !== "all") {
     query = query.eq("status", status);
+  }
+  if (visibility !== "all") {
+    query = query.eq("visibility", visibility);
   }
   if (categoryId) {
     query = query.eq("category_id", categoryId);
@@ -100,6 +110,7 @@ export async function getRelatedVideos(
     .from("videos")
     .select(VIDEO_SELECT)
     .eq("status", "published")
+    .in("visibility", ["public", "preview"])
     .neq("id", excludeId)
     .order("created_at", { ascending: false })
     .limit(limit);
@@ -122,6 +133,8 @@ export interface CreateVideoInput {
   duration: number | null;
   isFeatured: boolean;
   status: VideoStatus;
+  visibility: VideoVisibility;
+  tags: string[];
   uploadedBy: string;
 }
 
@@ -137,6 +150,8 @@ export async function createVideo(input: CreateVideoInput) {
       duration: input.duration,
       is_featured: input.isFeatured,
       status: input.status,
+      visibility: input.visibility,
+      tags: input.tags,
       uploaded_by: input.uploadedBy,
     })
     .select("*")
@@ -154,6 +169,8 @@ export interface UpdateVideoInput {
   duration?: number | null;
   isFeatured?: boolean;
   status?: VideoStatus;
+  visibility?: VideoVisibility;
+  tags?: string[];
 }
 
 export async function updateVideo(id: string, input: UpdateVideoInput) {
@@ -166,6 +183,8 @@ export async function updateVideo(id: string, input: UpdateVideoInput) {
   if (input.duration !== undefined) patch.duration = input.duration;
   if (input.isFeatured !== undefined) patch.is_featured = input.isFeatured;
   if (input.status !== undefined) patch.status = input.status;
+  if (input.visibility !== undefined) patch.visibility = input.visibility;
+  if (input.tags !== undefined) patch.tags = input.tags;
 
   const { data, error } = await supabase
     .from("videos")
@@ -185,4 +204,35 @@ export async function deleteVideo(id: string): Promise<void> {
 export async function recordVideoView(videoId: string): Promise<void> {
   const { error } = await supabase.rpc("record_video_view", { p_video_id: videoId });
   if (error) throw new Error(error.message);
+}
+
+/** Counts grouped by status and visibility, for the admin dashboard. */
+export async function getVideoStatusSummary() {
+  const { data, error } = await supabase.from("videos").select("status, visibility");
+  if (error) throw new Error(error.message);
+
+  const rows = (data ?? []) as { status: VideoStatus; visibility: VideoVisibility }[];
+  const tally = <T extends string>(key: "status" | "visibility", value: T) =>
+    rows.filter((r) => r[key] === value).length;
+
+  return {
+    total: rows.length,
+    draft: tally("status", "draft"),
+    published: tally("status", "published"),
+    unpublished: tally("status", "unpublished"),
+    archived: tally("status", "archived"),
+    publicCount: tally("visibility", "public"),
+    privateCount: tally("visibility", "private"),
+    previewCount: tally("visibility", "preview"),
+  };
+}
+
+/** Videos created since the given ISO timestamp (dashboard "uploaded today"). */
+export async function countVideosSince(sinceIso: string): Promise<number> {
+  const { count, error } = await supabase
+    .from("videos")
+    .select("*", { count: "exact", head: true })
+    .gte("created_at", sinceIso);
+  if (error) throw new Error(error.message);
+  return count ?? 0;
 }
