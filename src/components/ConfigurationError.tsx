@@ -66,13 +66,21 @@ export default function ConfigurationError() {
                 from Supabase → Settings → API.
               </li>
               <li>
-                On Vercel: add both variables under Project Settings → Environment
-                Variables (Production, Preview and Development).
+                This repo ships a committed{" "}
+                <span className="font-mono text-xs">.env.production</span>, so a fresh
+                build should already have these values.
               </li>
               <li>
-                <strong className="text-foreground">Redeploy after adding them.</strong>{" "}
-                Vite embeds these values at build time, so an existing build will not
-                pick them up.
+                If you see this screen anyway, check Vercel → Project Settings →
+                Environment Variables for an{" "}
+                <strong className="text-foreground">empty or wrong value</strong> of
+                either name — a variable set there overrides the committed file, and an
+                empty one shadows the good value.
+              </li>
+              <li>
+                <strong className="text-foreground">Redeploy after any change.</strong>{" "}
+                Vite embeds these values at build time, so an existing build will never
+                pick them up — and a cached browser tab may still show an old bundle.
               </li>
             </ol>
           </div>
